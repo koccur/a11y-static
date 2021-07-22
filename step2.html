@@ -71,10 +71,10 @@
     </div>
     <form>
       <div id="step2" class="flex flex-column fxLayoutGap-1">
-        <fieldset class="m-b-l flex flex-column fxLayoutGap-025" id="purposeOfTravel">
+        <fieldset class="m-b-l flex flex-column fxLayoutGap-025" id="purposeOfTravel" aria-describedby="err_11">
           <legend>Purpose of Travel (required)</legend>
           <div>
-            <input type="radio" name="purposeOfTravel" id="radioTourism" class="m-r-l">
+            <input type="radio" name="purposeOfTravel" id="radioTourism" class="m-r-l" >
             <label for="radioTourism">Turism</label>
           </div>
           <div>
@@ -91,39 +91,39 @@
           </div>
           <div>
             <img class="icon" src="assets/error.png" alt="Error:"/>
-            <p class="error">Please enter your purpose of travel</p>
+            <p class="error" id="err_11">Please enter your purpose of travel</p>
           </div>
         </fieldset>
-        <div class="input-container flex flex-column fxLayoutGap-025" id="country_label">
+        <div class="input-container flex flex-column fxLayoutGap-025" id="country_label" >
           <label for="country">
             Country
             <img class="icon" src="assets/error.png" alt="Error:"/>
           </label>
-          <input type="text" name="country" id="country">
-          <span class="error">Please enter your country</span>
+          <input type="text" name="country" id="country" aria-describedBy="err_0">
+          <span class="error" id="err_0">Please enter your country</span>
         </div>
         <div class="input-container flex flex-column fxLayoutGap-025" id="address_label">
           <label for="address">
             Address (required)
             <img class="icon" src="assets/error.png" alt="Error:"/>
           </label>
-          <input type="text" name="address" id="address" required>
-          <span class="error">Please enter your address</span>
+          <input type="text" name="address" id="address" required aria-describedBy="err_1">
+          <span class="error" id="err_1">Please enter your address</span>
 
         </div>
         <div class="input-container flex flex-column fxLayoutGap-025" id="date_label">
           <label for="date">Date (required)
             <img class="icon" src="assets/error.png" alt="Error:"/>
           </label>
-          <input type="date" name="date" id="date" required>
-          <span class="error">Please enter your date of travel</span>
+          <input type="date" name="date" id="date" required aria-describedBy="err_2">
+          <span class="error" id="err_2">Please enter your date of travel</span>
         </div>
         <div class="input-container flex flex-column fxLayoutGap-025" id="description_label">
           <label for="description">Incident description (required)
             <img class="icon" src="assets/error.png" alt="Error:"/>
           </label>
-          <textarea name="description" id="description" cols="30" rows="10" required></textarea>
-          <span class="error">Please enter your incident description</span>
+          <textarea name="description" id="description" cols="30" rows="10" required aria-describedBy="err_3"></textarea>
+          <span class="error" id="err_3">Please enter your incident description</span>
         </div>
       </div>
     </form>

@@ -73,40 +73,40 @@
             First name (required)
             <img class="icon" src="assets/error.png" alt="Error:"/>
           </label>
-          <input type="text" name="fname" id="fname" required>
-          <span class="error">Please enter your first name</span>
+          <input type="text" name="fname" id="fname" required aria-describedBy="err_1">
+          <span class="error" id="err_1">Please enter your first name</span>
         </div>
         <div class="input-container flex flex-column fxLayoutGap-025" id="sname_label">
           <label for="sname">
             Second name (required)
             <img class="icon" src="assets/error.png" alt="Error:"/>
           </label>
-          <input type="text" name="sname" id="sname" required>
-          <span class="error">Please enter your second name</span>
+          <input type="text" name="sname" id="sname" required aria-describedBy="err_2">
+          <span class="error" id="err_2">Please enter your second name</span>
         </div>
         <div class="input-container flex flex-column fxLayoutGap-025" id="bday_label">
           <label for="bday">
             Birthday (required)
             <img class="icon" src="assets/error.png" alt="Error:"/>
           </label>
-          <input type="date" name="bday" id="bday" required>
-          <span class="error">Please enter your birth date</span>
+          <input type="date" name="bday" id="bday" required aria-describedBy="err_3">
+          <span class="error" id="err_3">Please enter your birth date</span>
         </div>
         <div class="input-container flex flex-column fxLayoutGap-025" id="phoneNumber_label">
           <label for="phoneNumber">
             Phone number (required)
             <img class="icon" src="assets/error.png" alt="Error:"/>
           </label>
-          <input type="text" name="phoneNumber" id="phoneNumber" required>
-          <span class="error">Please enter your phone number</span>
+          <input type="text" name="phoneNumber" id="phoneNumber" required aria-describedBy="err_4">
+          <span class="error" id="err_4">Please enter your phone number</span>
         </div>
         <div class="input-container flex flex-column fxLayoutGap-025" id="email_label">
           <label for="email">
             Email (required)
             <img class="icon" src="assets/error.png" alt="Error:"/>
           </label>
-          <input type="email" name="email" id="email" required>
-          <span class="error">Please enter your email</span>
+          <input type="email" name="email" id="email" required aria-describedBy="err_5">
+          <span class="error" id="err_5">Please enter your email</span>
           <span class="error-wrong-input">Please correct your email</span>
         </div>
         <div class="input-container flex flex-column fxLayoutGap-025" id="policyNumber_label">
@@ -114,8 +114,8 @@
             Policy number (required)
             <img class="icon" src="assets/error.png" alt="Error:"/>
           </label>
-          <input type="text" name="policyNumber" id="policyNumber" required>
-          <span class="error">Please enter your policy number</span>
+          <input type="text" name="policyNumber" id="policyNumber" required aria-describedBy="err_6">
+          <span class="error" id="err_6">Please enter your policy number</span>
         </div>
       </div>
 
