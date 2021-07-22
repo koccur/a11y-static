@@ -84,7 +84,8 @@
             <td id="itemPrice"></td>
             <td id="itemName"></td>
             <td>
-              <button type="button" class="round-button" aria-label="delete item" onclick="openModal('dialog-remove','removeButton')" aria-haspopup="true" id="removeButton">
+              <button type="button" class="round-button" aria-label="delete item" onclick="openModal('dialog-remove','removeButton')"
+                      aria-haspopup="true" id="removeButton">
                 <svg class="icon" aria-label="delete this item" height="427pt" viewBox="-40 0 427 427.00131" width="427pt"
                      xmlns="http://www.w3.org/2000/svg">
                   <path d="m232.398438 154.703125c-5.523438 0-10 4.476563-10 10v189c0 5.519531 4.476562 10 10 10 5.523437 0 10-4.480469 10-10v-189c0-5.523437-4.476563-10-10-10zm0 0"/>
@@ -106,7 +107,8 @@
             </td>
           </tr>
         </table>
-        <button aria-haspopup="true" id="addButton" class="stick-to-right-button" type="button" aria-label="add another expense, button open popup"
+        <button aria-haspopup="true" id="addButton" class="stick-to-right-button" type="button"
+                aria-label="add another expense, button open popup"
                 onclick="openModal('dialog','addButton')"> + Add another expense
         </button>
       </div>
@@ -247,6 +249,7 @@
         <li class="p-sm p-l-0 touch-space"><a href="./find.html">Find a Doctor</a></li>
         <li class="p-sm p-l-0 touch-space"><a href="./renew.html">Renew Policy</a></li>
         <li class="p-sm p-l-0 touch-space"><a href="./claims.html">Claims Center</a></li>
+        <li class="p-sm p-l-0 touch-space"><a href="./sitemap.xml">Sitemap</a></li>
       </ul>
     </div>
   </nav>
@@ -259,6 +262,83 @@
 </footer>
 </body>
 <script>
+  function polyfill() {
+    window.spawn = window.spawn || function (gen) {
+      function continuer(verb, arg) {
+        var result;
+        try {
+          result = generator[verb](arg);
+        } catch (err) {
+          return Promise.reject(err);
+        }
+        if (result.done) {
+          return result.value;
+        } else {
+          return Promise.resolve(result.value).then(onFulfilled, onRejected);
+        }
+      }
+
+      var generator = gen();
+      var onFulfilled = continuer.bind(continuer, 'next');
+      var onRejected = continuer.bind(continuer, 'throw');
+      return onFulfilled();
+    };
+    window.showModalDialog = window.showModalDialog || function (url, arg, opt) {
+      url = url || '';
+      arg = arg || null;
+      opt = opt || 'dialogWidth:300px;dialogHeight:200px';
+      var caller = showModalDialog.caller.toString();
+      var dialog = document.body.appendChild(document.createElement('dialog'));
+      dialog.setAttribute('style', opt.replace(/dialog/gi, ''));
+      dialog.innerHTML = '<a href="#" id="dialog-close" style="position: absolute; top: 0; right: 4px; font-size: 20px; color: #000; text-decoration: none; outline: none;">&times;</a><iframe id="dialog-body" src="' +
+        url + '" style="border: 0; width: 100%; height: 100%;"></iframe>';
+      document.getElementById('dialog-body').contentWindow.dialogArguments = arg;
+      document.getElementById('dialog-close').addEventListener('click', function (e) {
+        e.preventDefault();
+        //dialog.close();
+        var event = document.createEvent('Event');
+        event.initEvent('myEvent', true, true);
+        dialog.dispatchEvent(event);
+      });
+
+      try {
+        //dialog.showModal()
+        dialog.style.top = '50px';
+        dialog.style.display = 'block';
+        document.getElementsByTagName('body')[0].appendChild(dialog);
+      } catch (err) {
+        alert(err);
+      }
+
+      //if using yield
+      if (caller.indexOf('yield') >= 0) {
+        return new Promise(function (resolve, reject) {
+          dialog.addEventListener('myEvent', function () {
+            var returnValue = document.getElementById('dialog-body').contentWindow.returnValue;
+            document.body.removeChild(dialog);
+            resolve(returnValue);
+          });
+        });
+      }
+
+      //if using eval
+      var isNext = false;
+      var nextStmts = caller.split('\n').filter(function (stmt) {
+        if (isNext || stmt.indexOf('showModalDialog(') >= 0) {
+          return isNext = true;
+        }
+        return false;
+      });
+      dialog.addEventListener('close', function () {
+        var returnValue = document.getElementById('dialog-body').contentWindow.returnValue;
+        document.body.removeChild(dialog);
+        nextStmts[0] = nextStmts[0].replace(/(window\.)?showModalDialog\(.*\)/g, JSON.stringify(returnValue));
+        eval('{\n' + nextStmts.join('\n'));
+      });
+      throw 'Execution stopped until showModalDialog is closed';
+    };
+  };
+  polyfill();
   let openMenuSwitch = false;
   let lastFocusElem;
   const items = [
@@ -266,11 +346,11 @@
       id: 1,
       price: 35,
       name: 'very very very expensive',
-      removal:true
+      removal: true
     }
   ];
-  document.getElementById('itemPrice').innerHTML=items[0].price;
-  document.getElementById('itemName').innerHTML=items[0].name;
+  document.getElementById('itemPrice').innerHTML = items[0].price;
+  document.getElementById('itemName').innerHTML = items[0].name;
 
   function toggleMenu() {
     openMenuSwitch = !openMenuSwitch;
@@ -288,7 +368,6 @@
   }
 
   setFocusOnFirstElementOnStep();
-
 
   const dialogSubmit = document.getElementById('dialog-submit');
 
