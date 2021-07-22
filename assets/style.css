@@ -556,7 +556,7 @@ fieldset.invalid legend {
   visibility: hidden;
   height: 0;
 }
-#block-separator {
+#block-separator{
   display: none;
 }
 
