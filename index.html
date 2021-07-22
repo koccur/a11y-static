@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>A11y - Insurer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!--  <link rel="preconnect" href="https://fonts.gstatic.com">-->
+  <!--  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">-->
+  <!--  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="flex flex-spacebetween flex-align-center" id="header">
+  <button class="menu no-hover-color" aria-haspopup="true" onclick="toggleMenu()">
+    <img src="assets/square.png" alt="Open menu"/>
+    <button aria-label="close popup" type="button" class="hidden ext-button" onclick="toggleMenu()">
+      <svg class="icon" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;"
+           xml:space="preserve"
+           aria-label="close popup icon"><g><g><path d="M284.286,256.002L506.143,34.144c7.811-7.811,7.811-20.475,0-28.285c-7.811-7.81-20.475-7.811-28.285,0L256,227.717
+			L34.143,5.859c-7.811-7.811-20.475-7.811-28.285,0c-7.81,7.811-7.811,20.475,0,28.285l221.857,221.857L5.858,477.859
+			c-7.811,7.811-7.811,20.475,0,28.285c3.905,3.905,9.024,5.857,14.143,5.857c5.119,0,10.237-1.952,14.143-5.857L256,284.287
+			l221.857,221.857c3.905,3.905,9.024,5.857,14.143,5.857s10.237-1.952,14.143-5.857c7.811-7.811,7.811-20.475,0-28.285
+			L284.286,256.002z"/></g></g></svg>
+    </button>
+
+  </button>
+  <div class="menu no-hover-color">
+    <ul class="menu-list hidden" id="menu-list">
+      <li class="no-list-style" onclick="toggleMenu()">
+        <a href="./index.html" class="active">Insurance</a>
+      </li>
+      <li class="no-list-style" onclick="toggleMenu()">
+        <a href="./aboutus.html">About us</a>
+      </li>
+      <li class="no-list-style">
+        <a href="./claim-report.html">Claim report</a>
+      </li>
+      <li class="no-list-style" onclick="toggleMenu()">
+        <a href="./contact.html">Contact</a>
+      </li>
+    </ul>
+  </div>
+  <section aria-label="insurer header" class="flex flex-justify-start flex-align-center">
+    <p class="h2-size">The insurer</p>
+    <img class="avatar" src="assets/Circle_Grey_Solid.png" alt="Insurer avatar"/>
+  </section>
+  <nav>
+    <ul class="no-list-style flex fxLayoutGap-1">
+      <li class="min-width-link"><a href="./index.html" class="active" id="firstLink">Insurance</a></li>
+      <li class="min-width-link"><a href="./aboutus.html">About us</a></li>
+      <li class="min-width-link"><a href="./claim-report.html">Claim report</a></li>
+      <li class="min-width-link"><a href="./contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+</header>
+<main class="flex flex-column">
+  <section aria-label="Travel insurance" class="gray-background flex flex-column flex-align-center flex-justify-center">
+    <h1>Travel Insurance</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores iure labore molestias, placeat qui quidem. Deserunt, fugiat hic
+      impedit molestias nemo praesentium quas reiciendis totam! Accusantium facere ipsa provident sequi.</p>
+    <button aria-label="Order travel insurance now" class="black-button blue-outline">Order now</button>
+  </section>
+
+  <section aria-label="Insurance description"
+           class="section-with-image flex flex-column flex-md-row flex-spacebetween flex-align-center">
+    <img src="#" alt="" class="big-placeholder"/>
+    <div>
+      <h2>Insurance for international visitors</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi deleniti eos eveniet exercitationem facilis harum hic inventore
+        ipsa, iure iusto maiores natus nostrum pariatur quidem quo, recusandae rem sed sequi.</p>
+      <ul aria-label="Insurance for international visitors important things" class="no-padding">
+        <li>List item #1</li>
+        <li>List item #2</li>
+        <li>List item #3</li>
+      </ul>
+    </div>
+  </section>
+
+  <section aria-label="Safe Travels" class="section-with-image flex flex-column flex-md-row flex-spacebetween flex-align-center">
+    <div>
+      <h2>Safe travels</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab animi beatae commodi consectetur, cum deleniti dolores, nemo non
+        numquam optio praesentium quaerat quisquam sunt! Corporis delectus fugiat harum magni nulla!</p>
+    </div>
+    <img src="#" alt="" class="big-placeholder"/>
+
+  </section>
+
+
+  <section aria-label="Travel topics" class="travel-squares flex flex-column flex-align-center flex-justify-center">
+    <h2>Explore Our Travel Topics</h2>
+    <div class="flex flex-wrap flex-align-center flex-justify-center">
+      <div class="square">
+        <img src="#" alt="" class="big-placeholder"/>
+        <p>Renting Vacation Homes</p>
+      </div>
+      <div class="square">
+        <img src="#" alt="" class="big-placeholder"/>
+        <p>Trends & Predictions</p>
+      </div>
+      <div class="square">
+        <img src="#" alt="" class="big-placeholder"/>
+        <p>Popular Travel Destinations for 2021</p>
+      </div>
+      <div class="square">
+        <img src="#" alt="" class="big-placeholder"/>
+        <p>Travel Gear for Safe Travels in 2021</p>
+      </div>
+    </div>
+  </section>
+  <section aria-label="Our CEO quote" class="gray-background ceo-quote flex flex-column flex-align-center flex-justify-center">
+    <em>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis delectus fugiat harum magni nulla"</em>
+    <img src="#" alt="CEO picture"/>
+    <p class="max-width">Donald Duck, CEO of Disney</p>
+  </section>
+  <section aria-label="insurance contact" class="flex flex-column flex-md-row flex-align-center flex-spacebetween">
+    <div>
+      <h2>Are you looking for an insurance?</h2>
+      <p>Contact us to order now</p>
+    </div>
+    <div class="flex flex-column flex-md-row flex-align-end fxLayoutGap-1">
+      <button class="white-button mid-size" aria-label="Insurance contact call us">Call us</button>
+      <button class="black-button mid-size blue-outline" aria-label="Insurance contact send a message">Send a Message</button>
+    </div>
+
+  </section>
+
+</main>
+<footer class="flex flex-column flex-md-row flex-spacebetween gray-background flex-align-top">
+  <section class="avatar-section flex flex-align-center flex-justify-start" aria-label="insurer footer">
+    <p class="h2-size">The insurer</p>
+    <img class="avatar" src="assets/Circle_Grey_Solid.png" alt="picture of something very important / Insurer avatar"/>
+  </section>
+
+  <nav aria-label="links" class="flex">
+    <div class="flex flex-column">
+      <p class="m-b-0"><b>About us</b></p>
+      <ul aria-label="aboutUs" class="no-list-style">
+        <li class="p-sm p-l-0 touch-space"><a href="./newsroom.html">Newsroom</a></li>
+        <li class="p-sm p-l-0 touch-space"><a href="./careers.html">Careers</a></li>
+        <li class="p-sm p-l-0 touch-space"><a href="./our.html">Our story</a></li>
+        <li class="p-sm p-l-0 touch-space"><a href="./customer.html">Customer Stories</a></li>
+      </ul>
+    </div>
+    <div class="flex flex-column">
+      <p class="m-b-0"><b>Products</b></p>
+      <ul aria-label="products" class="no-list-style">
+        <li class="p-sm p-l-0 touch-space"><a href="./vacation.html">Vacation / Holiday</a></li>
+        <li class="p-sm p-l-0 touch-space"><a href="./student.html">Student / Scholar</a></li>
+        <li class="p-sm p-l-0 touch-space"><a href="./mission.html">Mission</a></li>
+        <li class="p-sm p-l-0 touch-space"><a href="./marine.html">Marine Captain / Crew</a></li>
+        <li class="p-sm p-l-0 touch-space"><a href="./employer.html">Employer / Bussiness Traveler</a></li>
+      </ul>
+    </div>
+    <div class="flex flex-column">
+      <p class="m-b-0"><b>Members</b></p>
+      <ul aria-label="members" class="no-list-style">
+        <li class="p-sm p-l-0 touch-space"><a href="./forms.html">Forms Library</a></li>
+        <li class="p-sm p-l-0 touch-space"><a href="./find.html">Find a Doctor</a></li>
+        <li class="p-sm p-l-0 touch-space"><a href="./renew.html">Renew Policy</a></li>
+        <li class="p-sm p-l-0 touch-space"><a href="./claims.html">Claims Center</a></li>
+      </ul>
+    </div>
+  </nav>
+  <button type="button" class="floating-button" onclick="function scrollToTop() {
+    window.scroll(0,0);
+    document.getElementById('firstLink')?.focus();
+  }
+  scrollToTop()">Back to top
+  </button>
+</footer>
+<script>
+  let openMenuSwitch = false;
+
+  function toggleMenu(event) {
+    if (event && event.keyCode !== 13) {
+      return;
+    }
+    openMenuSwitch = !openMenuSwitch;
+    if (openMenuSwitch) {
+      document.getElementById('menu-list').classList.add('show');
+    } else {
+      document.getElementById('menu-list').classList.remove('show');
+    }
+  }
+
+
+</script>
+
+</body>
+</html>

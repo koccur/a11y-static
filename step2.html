@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>A11y - Claim report</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!--  <link rel="preconnect" href="https://fonts.gstatic.com">-->
+  <!--  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">-->
+  <!--  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="flex flex-spacebetween flex-align-center" id="header">
+  <button class="menu no-hover-color" aria-haspopup="true" onclick="toggleMenu()">
+    <img src="assets/square.png" alt="Open menu"/>
+    <button aria-label="close popup" type="button" class="hidden ext-button" onclick="toggleMenu()">
+      <svg class="icon" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;"
+           xml:space="preserve"
+           aria-label="close popup icon"><g><g><path d="M284.286,256.002L506.143,34.144c7.811-7.811,7.811-20.475,0-28.285c-7.811-7.81-20.475-7.811-28.285,0L256,227.717
+			L34.143,5.859c-7.811-7.811-20.475-7.811-28.285,0c-7.81,7.811-7.811,20.475,0,28.285l221.857,221.857L5.858,477.859
+			c-7.811,7.811-7.811,20.475,0,28.285c3.905,3.905,9.024,5.857,14.143,5.857c5.119,0,10.237-1.952,14.143-5.857L256,284.287
+			l221.857,221.857c3.905,3.905,9.024,5.857,14.143,5.857s10.237-1.952,14.143-5.857c7.811-7.811,7.811-20.475,0-28.285
+			L284.286,256.002z"/></g></g></svg>
+    </button>
+
+  </button>
+  <div class="menu no-hover-color">
+    <ul class="menu-list hidden" id="menu-list">
+      <li class="no-list-style" onclick="toggleMenu()">
+        <a href="./index.html">Insurance</a>
+      </li>
+      <li class="no-list-style" onclick="toggleMenu()">
+        <a href="./aboutus.html">About us</a>
+      </li>
+      <li class="no-list-style">
+        <a href="./claim-report.html" class="active">Claim report</a>
+      </li>
+      <li class="no-list-style" onclick="toggleMenu()">
+        <a href="./contact.html">Contact</a>
+      </li>
+    </ul>
+  </div>
+  <section aria-label="insurer header" class="flex flex-justify-start flex-align-center">
+    <p class="h2-size">The insurer</p>
+    <img class="avatar" src="assets/Circle_Grey_Solid.png" alt="Insurer avatar"/>
+  </section>
+  <nav>
+    <ul class="no-list-style flex fxLayoutGap-1">
+      <li class="min-width-link"><a href="./index.html" id="firstLink">Insurance</a></li>
+      <li class="min-width-link"><a href="./aboutus.html">About us</a></li>
+      <li class="min-width-link"><a href="./claim-report.html" class="active">Claim report</a></li>
+      <li class="min-width-link"><a href="./contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+</header>
+<main class="flex flex-column">
+  <section class="flex border-top flex-column flex-align-center flex-justify-center fxLayoutGap-1">
+    <h1 class="biggerFont">Claim report</h1>
+    <div class="m-t-l flex fxLayoutGap-15 flex-column-xs">
+      <button aria-label="step 1 - personal details" class="gray-button " onclick="goToStep1()" onkeydown="goToStep1(e)">Step 1 - Personal
+        details
+      </button>
+      <button aria-label="step 2 - Incident details" class="gray-button active" onclick="goToStep2()" onkeydown="goToStep2(e)">Step 2 -
+        Incident details
+      </button>
+      <button disabled aria-label="Step 3 - Expense report" class="gray-button blue-outline" onclick="goToStep3()" onkeydown="goToStep3(e)">
+        Step 3 - Expense report
+      </button>
+    </div>
+    <form>
+      <div id="step2" class="flex flex-column fxLayoutGap-1">
+        <fieldset class="m-b-l flex flex-column fxLayoutGap-025" id="purposeOfTravel">
+          <legend>Purpose of Travel (required)</legend>
+          <div>
+            <input type="radio" name="purposeOfTravel" id="radioTourism" class="m-r-l">
+            <label for="radioTourism">Turism</label>
+          </div>
+          <div>
+            <input type="radio" name="purposeOfTravel" id="radioStudy" class="m-r-l">
+            <label for="radioStudy">Study / mental Work</label>
+          </div>
+          <div>
+            <input type="radio" name="purposeOfTravel" id="radioPhysical" class="m-r-l">
+            <label for="radioPhysical">Physical work</label>
+          </div>
+          <div>
+            <input type="radio" name="purposeOfTravel" id="radioSport" class="m-r-l">
+            <label for="radioSport">High-risk sport</label>
+          </div>
+          <div>
+            <img class="icon" src="assets/error.png" alt="Error:"/>
+            <p class="error">Please enter your purpose of travel</p>
+          </div>
+        </fieldset>
+        <div class="input-container flex flex-column fxLayoutGap-025" id="country_label">
+          <label for="country">
+            Country
+            <img class="icon" src="assets/error.png" alt="Error:"/>
+          </label>
+          <input type="text" name="country" id="country">
+          <span class="error">Please enter your country</span>
+        </div>
+        <div class="input-container flex flex-column fxLayoutGap-025" id="address_label">
+          <label for="address">
+            Address (required)
+            <img class="icon" src="assets/error.png" alt="Error:"/>
+          </label>
+          <input type="text" name="address" id="address" required>
+          <span class="error">Please enter your address</span>
+
+        </div>
+        <div class="input-container flex flex-column fxLayoutGap-025" id="date_label">
+          <label for="date">Date (required)
+            <img class="icon" src="assets/error.png" alt="Error:"/>
+          </label>
+          <input type="date" name="date" id="date" required>
+          <span class="error">Please enter your date of travel</span>
+        </div>
+        <div class="input-container flex flex-column fxLayoutGap-025" id="description_label">
+          <label for="description">Incident description (required)
+            <img class="icon" src="assets/error.png" alt="Error:"/>
+          </label>
+          <textarea name="description" id="description" cols="30" rows="10" required></textarea>
+          <span class="error">Please enter your incident description</span>
+        </div>
+      </div>
+    </form>
+    <div class="m-t-l flex flex-justify-center flex-spacebetween fxLayoutGap-15 flex-column-xs">
+      <button class="white-button" type="button" aria-label="Return to previous step" id="backButton" onclick="goToStep1()"
+              onkeydown="goToStep1(event)">Return to Personal details
+      </button>
+      <div id="block-separator" class="hidden"></div>
+      <button id="submit" class="black-button blue-outline" type="button" aria-label="Continue to next step" onclick="goToStep3()"
+              onkeydown="goToStep3(event)">Continue
+      </button>
+    </div>
+    </form>
+  </section>
+</main>
+<footer class="flex flex-column flex-md-row flex-spacebetween gray-background flex-justify-top">
+  <section class="avatar-section flex flex-align-center flex-justify-start" aria-label="insurer footer">
+    <p class="h2-size">The insurer</p>
+    <img class="avatar" src="assets/Circle_Grey_Solid.png" alt="picture of something very important / Insurer avatar"/>
+  </section>
+
+  <nav aria-label="links" class="flex">
+    <div class="flex flex-column">
+      <p class="m-b-0"><b>About us</b></p>
+      <ul aria-label="aboutUs" class="no-list-style">
+        <li class="p-sm p-l-0 touch-space"><a href="./newsroom.html">Newsroom</a></li>
+        <li class="p-sm p-l-0 touch-space"><a href="./careers.html">Careers</a></li>
+        <li class="p-sm p-l-0 touch-space"><a href="./our.html">Our story</a></li>
+        <li class="p-sm p-l-0 touch-space"><a href="./customer.html">Customer Stories</a></li>
+      </ul>
+    </div>
+    <div class="flex flex-column">
+      <p class="m-b-0"><b>Products</b></p>
+      <ul aria-label="products" class="no-list-style">
+        <li class="p-sm p-l-0 touch-space"><a href="./vacation.html">Vacation / Holiday</a></li>
+        <li class="p-sm p-l-0 touch-space"><a href="./student.html">Student / Scholar</a></li>
+        <li class="p-sm p-l-0 touch-space"><a href="./mission.html">Mission</a></li>
+        <li class="p-sm p-l-0 touch-space"><a href="./marine.html">Marine Captain / Crew</a></li>
+        <li class="p-sm p-l-0 touch-space"><a href="./employer.html">Employer / Bussiness Traveler</a></li>
+      </ul>
+    </div>
+    <div class="flex flex-column">
+      <p class="m-b-0"><b>Members</b></p>
+      <ul aria-label="members" class="no-list-style">
+        <li class="p-sm p-l-0 touch-space"><a href="./forms.html">Forms Library</a></li>
+        <li class="p-sm p-l-0 touch-space"><a href="./find.html">Find a Doctor</a></li>
+        <li class="p-sm p-l-0 touch-space"><a href="./renew.html">Renew Policy</a></li>
+        <li class="p-sm p-l-0 touch-space"><a href="./claims.html">Claims Center</a></li>
+      </ul>
+    </div>
+  </nav>
+  <button type="button" class="floating-button" onclick="function scrollToTop() {
+    window.scroll(0,0);
+        document.getElementById('firstLink')?.focus();
+
+  }
+  scrollToTop()">Back to top
+  </button>
+</footer>
+<script>
+  let openMenuSwitch = false;
+
+  function toggleMenu() {
+    openMenuSwitch = !openMenuSwitch;
+    if (openMenuSwitch) {
+      document.getElementById('menu-list').classList.add('show');
+    } else {
+      document.getElementById('menu-list').classList.remove('show');
+    }
+  }
+
+  setFocusOnFirstElementOnStep();
+
+  function goToStep2(e) {
+    if (e && e.keyCode === 13) {
+      if (validateField() !== 0) {
+        return;
+      }
+      window.location = './step2.html';
+    } else if (!e) {
+      if (validateField() !== 0) {
+        return;
+      }
+      window.location = './step2.html';
+    }
+  }
+
+  function goToStep1(e) {
+    if (e && e.keyCode === 13) {
+      if (validateField() !== 0) {
+        return;
+      }
+      window.location = './claim-report.html';
+    } else if (!e) {
+      if (validateField() !== 0) {
+        return;
+      }
+      window.location = './claim-report.html';
+    }
+  }
+
+  function goToStep3(e) {
+    if (e && e.keyCode === 13) {
+      if (validateField() !== 0) {
+        return;
+      }
+      window.location = './step3.html';
+    } else if (!e) {
+      if (validateField() !== 0) {
+        return;
+      }
+      window.location = './step3.html';
+    }
+  }
+
+  function checkFieldSet() {
+    const fieldSetData = {
+      radioTourism: document.getElementById('radioTourism').checked,
+      radioSport: document.getElementById('radioSport').checked,
+      radioPhysical: document.getElementById('radioPhysical').checked,
+      radioStudy: document.getElementById('radioStudy').checked,
+    }
+    let sumAllElem = 0;
+    sumAllElem += +fieldSetData.radioPhysical;
+    sumAllElem += +fieldSetData.radioSport;
+    sumAllElem += +fieldSetData.radioTourism;
+    sumAllElem += +fieldSetData.radioStudy;
+
+    const isInvalid = +(sumAllElem === 0);
+    if (isInvalid) {
+      document.getElementById(`purposeOfTravel`)?.classList.add('invalid');
+      document.getElementById(`radioTourism`)?.focus();
+    } else {
+      document.getElementById(`purposeOfTravel`)?.classList.remove('invalid');
+    }
+    return isInvalid;
+  }
+
+  function validateField() {
+    let errorCounter = 0;
+    errorCounter += this.checkFieldSet();
+    errorCounter += this.checkField('address');
+    errorCounter += this.checkField('description');
+    errorCounter += this.checkField('date');
+
+    return errorCounter;
+  }
+
+  function setFocusOnFirstElementOnStep() {
+    document.getElementById('radioTourism').focus();
+
+  }
+
+  function checkField(fieldName) {
+    if (!document.getElementById(`${fieldName}`).validity.valid) {
+      document.getElementById(`${fieldName}_label`)?.classList.add('invalid');
+      document.getElementById(`${fieldName}`)?.focus();
+      if (document.getElementById(`${fieldName}`).validity.typeMismatch) {
+        document.getElementById(`${fieldName}_label`)?.classList.add('wrong-input');
+      } else {
+        document.getElementById(`${fieldName}_label`)?.classList.remove('wrong-input');
+      }
+      return 1;
+    } else {
+      document.getElementById(`${fieldName}_label`)?.classList.remove('invalid');
+      document.getElementById(`${fieldName}_label`)?.classList.remove('wrong-input');
+
+      return 0;
+    }
+  }
+
+</script>
+</body>
+</html>
