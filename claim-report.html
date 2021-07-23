@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="assets/style.css">
+  <script src="js/base.js"></script>
 </head>
 <body>
 <header class="flex flex-spacebetween flex-align-center" id="header">
@@ -170,8 +171,9 @@
   <button type="button" class="floating-button" onclick="scrollToTop()">Back to top</button>
 </footer>
 <script>
-  let actualStep = 1
+  const actualStep = 1
   setFocusOnFirstElementOnStep();
+  initializeData(actualStep);
 
   let openMenuSwitch = false;
 
@@ -193,11 +195,13 @@
       if (validateField() !== 0) {
         return;
       }
+      saveData(actualStep);
       window.location = './step2.html';
     } else if (!e) {
       if (validateField() !== 0) {
         return;
       }
+      saveData(actualStep);
       window.location = './step2.html';
     }
   }

@@ -9,6 +9,8 @@
   <!--  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">-->
   <!--  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
   <link rel="stylesheet" href="assets/style.css">
+  <script src="js/base.js"></script>
+
 </head>
 <body>
 <header class="flex flex-spacebetween flex-align-center" id="header">
@@ -185,6 +187,10 @@
   </button>
 </footer>
 <script>
+  const actualStep = 2;
+
+  initializeData(actualStep);
+
   let openMenuSwitch = false;
 
   function toggleMenu() {
@@ -214,14 +220,8 @@
 
   function goToStep1(e) {
     if (e && e.keyCode === 13) {
-      if (validateField() !== 0) {
-        return;
-      }
       window.location = './claim-report.html';
     } else if (!e) {
-      if (validateField() !== 0) {
-        return;
-      }
       window.location = './claim-report.html';
     }
   }
@@ -231,11 +231,13 @@
       if (validateField() !== 0) {
         return;
       }
+      saveData(actualStep);
       window.location = './step3.html';
     } else if (!e) {
       if (validateField() !== 0) {
         return;
       }
+      saveData(actualStep);
       window.location = './step3.html';
     }
   }
