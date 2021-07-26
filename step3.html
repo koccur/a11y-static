@@ -100,8 +100,8 @@
     </div>
   </section>
 
-  <dialog id="dialog">
-    <section>
+  <div class="modal" id="dialog">
+    <section class="modal-content">
       <div class="flex flex-justify-end">
         <button aria-label="close popup" id="closeButton-dialog" type="button" class="transparent" onclick="closeOnEnter('dialog',null)"
                 onkeydown="closeOnEnter('dialog',event)">
@@ -135,10 +135,10 @@
         </div>
       </form>
     </section>
-  </dialog>
+  </div>
 
-  <dialog id="dialog-edit">
-    <section>
+  <div class="modal" id="dialog-edit">
+    <section class="modal-content">
       <div class="flex flex-justify-end">
         <button aria-label="close popup" id="closeButton-dialog-edit" type="button" class="transparent"
                 onclick="closeOnEnter('dialog-edit',null)"
@@ -174,10 +174,10 @@
         </div>
       </form>
     </section>
-  </dialog>
+  </div>
 
-  <dialog id="dialog-remove">
-    <section>
+  <div class="modal" id="dialog-remove">
+    <section class="modal-content">
       <div class="flex flex-justify-end">
         <button aria-label="close popup" type="button" id="closeButton-dialog-remove" class="transparent"
                 onclick="closeOnEnter('dialog-remove',null)" onkeydown="closeOnEnter('dialog-remove',event)">
@@ -190,7 +190,7 @@
 			L284.286,256.002z"/></g></g></svg>
         </button>
       </div>
-      <h1 style="text-align: center">Expense</h1>
+      <h1 class="center">Expense</h1>
       <p>Are you sure that you want to delete this element?</p>
       <p id="chosen_element_data">{{data.name}}: {{data.price}}</p>
 
@@ -206,29 +206,30 @@
         </button>
       </div>
     </section>
-  </dialog>
+  </div>
 
-  <dialog id="dialog-submit">
-    <div class="flex flex-justify-end">
-      <button aria-label="close popup" type="button" id="closeButton-dialog-submit" class="transparent"
-              onclick="closeOnEnter('dialog-submit',null)" onkeydown="closeOnEnter('dialog-submit',event)">
-        <svg class="icon" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;"
-             xml:space="preserve"
-             aria-label="close popup icon"><g><g><path d="M284.286,256.002L506.143,34.144c7.811-7.811,7.811-20.475,0-28.285c-7.811-7.81-20.475-7.811-28.285,0L256,227.717
+  <div class="modal" id="dialog-submit">
+    <section class="modal-content">
+      <div class="flex flex-justify-end">
+        <button aria-label="close popup" type="button" id="closeButton-dialog-submit" class="transparent"
+                onclick="closeOnEnter('dialog-submit',null)" onkeydown="closeOnEnter('dialog-submit',event)">
+          <svg class="icon" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;"
+               xml:space="preserve"
+               aria-label="close popup icon"><g><g><path d="M284.286,256.002L506.143,34.144c7.811-7.811,7.811-20.475,0-28.285c-7.811-7.81-20.475-7.811-28.285,0L256,227.717
 			L34.143,5.859c-7.811-7.811-20.475-7.811-28.285,0c-7.81,7.811-7.811,20.475,0,28.285l221.857,221.857L5.858,477.859
 			c-7.811,7.811-7.811,20.475,0,28.285c3.905,3.905,9.024,5.857,14.143,5.857c5.119,0,10.237-1.952,14.143-5.857L256,284.287
 			l221.857,221.857c3.905,3.905,9.024,5.857,14.143,5.857s10.237-1.952,14.143-5.857c7.811-7.811,7.811-20.475,0-28.285
 			L284.286,256.002z"/></g></g></svg>
-      </button>
-    </div>
-    <h1 class="black center">Data was send</h1>
-    <div class="flex flex-column-xs fxLayoutGap-025 flex-justify-center flex-align-center m-t-l">
-      <button class="black-button blue-outline" type="button" aria-label="close popup" onclick="closeOnEnter('dialog-submit',null)"
-              onkeydown="closeOnEnter('dialog-submit',event)">Close
-      </button>
-    </div>
-
-  </dialog>
+        </button>
+      </div>
+      <h1 class="black center">Data was send</h1>
+      <div class="flex flex-column-xs fxLayoutGap-025 flex-justify-center flex-align-center m-t-l">
+        <button class="black-button blue-outline" type="button" aria-label="close popup" onclick="closeOnEnter('dialog-submit',null)"
+                onkeydown="closeOnEnter('dialog-submit',event)">Close
+        </button>
+      </div>
+    </section>
+  </div>
 
 </main>
 <footer class="flex flex-column flex-md-row flex-spacebetween gray-background ">
@@ -280,10 +281,18 @@
   let chosenElem = {name: '', price: '', id: 0};
   let lastFocusElem;
   loadItems();
+  const customEvent = new Event('close');
 
+  addListenerOnEscButton();
   const dialogSubmit = document.getElementById('dialog-submit');
   const dialogEdit = document.getElementById('dialog-edit');
   const dialogAdd = document.getElementById('dialog');
+  const dialogRemove = document.getElementById('dialog-remove');
+
+  dialogSubmit.style.display = "none";
+  dialogEdit.style.display = "none";
+  dialogAdd.style.display = "none";
+  dialogRemove.style.display = "none";
 
   dialogAdd.addEventListener('close', () => {
     document.getElementById('name').value = '';
@@ -291,6 +300,7 @@
   })
 
   createRows();
+  setFocusOnFirstElementOnStep();
 
   function toggleMenu() {
     openMenuSwitch = !openMenuSwitch;
@@ -307,13 +317,25 @@
     }, 500)
   }
 
-  setFocusOnFirstElementOnStep();
+  function addListenerOnEscButton() {
+    document.addEventListener('keydown', (event) => {
+      if (event.keyCode === 27) {
+        dialogSubmit.style.display = "none";
+        dialogEdit.style.display = "none";
+        dialogAdd.style.display = "none";
+        dialogRemove.style.display = "none";
+      }
+    })
+  }
 
   function closeOnEnter(dialogName, event) {
     if (event && event.keyCode === 13) {
       document.getElementById('closeButton' + '-' + dialogName).click();
     } else if (!event) {
-      document.getElementById(dialogName).close();
+      document.getElementById(dialogName).style.display = 'none';
+      document.getElementById(dialogName).dispatchEvent(customEvent);
+      document.getElementById('name').value = '';
+      document.getElementById('price').value = '';
       lastFocusElem.focus();
     }
 
@@ -358,9 +380,8 @@
     if (dialogName === 'dialog-remove') {
       document.getElementById('chosen_element_data').innerHTML = chosenElem.name + ': ' + chosenElem.price;
     }
-
     lastFocusElem = document.getElementById(buttonName);
-    document.getElementById(dialogName).showModal();
+    document.getElementById(dialogName).style.display = 'flex';
   }
 
   function setChosenElementByTrIndex(trIndex) {
@@ -401,11 +422,11 @@
 
   function onSubmit(e) {
     if (e && e.keyCode === 13) {
-      dialogSubmit.showModal();
+      dialogSubmit.style.display = "flex"
       dialogSubmit.addEventListener('close', onClose);
       resetForm();
     } else if (!e) {
-      dialogSubmit.showModal();
+      dialogSubmit.style.display = "flex"
       dialogSubmit.addEventListener('close', onClose);
       resetForm();
     }
