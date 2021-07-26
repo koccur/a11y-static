@@ -596,6 +596,21 @@ fieldset.invalid legend {
 .center{
   text-align: center;
 }
+.modal-content:not(:focus-within){
+  transition: background-color 0.01s;
+}
+.modal form label img{
+  display: none;
+}
+.modal form .error{
+  display: none;
+}
+.modal form.invalid label img{
+  display: block;
+}
+.modal form.invalid .error{
+  display: block;
+}
 
 
 @media screen and (max-width: 767px) {

@@ -9,6 +9,7 @@
   <!--  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">-->
   <!--  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
   <link rel="stylesheet" href="assets/style.css">
+  <script src="https://cdn.jsdelivr.net/ally.js/1.4.1/ally.min.js"></script>
   <script src="js/base.js"></script>
 </head>
 <body>
@@ -100,7 +101,7 @@
     </div>
   </section>
 
-  <div class="modal" id="dialog">
+  <div class="modal" id="dialog" role="dialog">
     <section class="modal-content">
       <div class="flex flex-justify-end">
         <button aria-label="close popup" id="closeButton-dialog" type="button" class="transparent" onclick="closeOnEnter('dialog',null)"
@@ -116,13 +117,19 @@
       </div>
       <h1 style="text-align: center">Expense</h1>
       <form class="flex flex-column fxLayoutGap-025">
-        <div class="flex flex-column fxLayoutGap-025">
-          <label for="name">Name</label>
-          <input type="text" name="name" id="name">
+        <div class="flex flex-column fxLayoutGap-025 name-field input-container">
+          <label for="name">Name
+            <img class="icon" src="assets/error.png" alt="Error:"/>
+          </label>
+          <input type="text" name="name" id="name" aria-describedBy="err_name">
+          <span class="error" id="err_name">Please enter expenses name</span>
         </div>
-        <div class="flex flex-column fxLayoutGap-025">
-          <label for="price">Price</label>
-          <input type="text" name="price" id="price">
+        <div class="flex flex-column fxLayoutGap-025 price-field input-container">
+          <label for="price">Price
+            <img class="icon" src="assets/error.png" alt="Error:"/>
+          </label>
+          <input type="text" name="price" id="price" aria-describedBy="err_price">
+          <span class="error" id="err_price">Please enter expenses price</span>
         </div>
         <div class="flex flex-column-xs flex-justify-center flex-align-center fxLayoutGap-025 m-t-l">
           <button class="white-button" type="button" aria-label="Cancel action" onclick="closeOnEnter('dialog',null)"
@@ -130,14 +137,14 @@
           </button>
           <div style="width:2rem"></div>
           <button class="black-button blue-outline" type="button" aria-label="Confirm expense action"
-                  onclick="addElement();closeOnEnter('dialog',null)">Confirm
+                  onclick="addElement()">Confirm
           </button>
         </div>
       </form>
     </section>
   </div>
 
-  <div class="modal" id="dialog-edit">
+  <div class="modal" id="dialog-edit" role="dialog">
     <section class="modal-content">
       <div class="flex flex-justify-end">
         <button aria-label="close popup" id="closeButton-dialog-edit" type="button" class="transparent"
@@ -154,29 +161,35 @@
       </div>
       <h1 style="text-align: center">Expense dialog edit</h1>
       <form class="flex flex-column fxLayoutGap-025">
-        <div class="flex flex-column fxLayoutGap-025">
-          <label for="name">Name</label>
-          <input type="text" name="name" id="name-edit">
+        <div class="flex flex-column fxLayoutGap-025 input-container name-edit-field">
+          <label for="name">Name (required)
+            <img class="icon" src="assets/error.png" alt="Error:"/>
+          </label>
+          <input type="text" name="name" id="name-edit" required aria-describedBy="err_name-edit">
+          <span class="error" id="err_name-edit">Please enter expenses name</span>
         </div>
-        <div class="flex flex-column fxLayoutGap-025">
-          <label for="price">Price</label>
-          <input type="text" name="price" id="price-edit">
+        <div class="flex flex-column fxLayoutGap-025 input-container price-edit-field" >
+          <label for="price">Price (required)
+            <img class="icon" src="assets/error.png" alt="Error:"/>
+          </label>
+          <input type="text" name="price" id="price-edit" required aria-describedBy="err_price-edit">
+          <span class="error" id="err_price-edit">Please enter expenses price</span>
         </div>
         <div class="flex flex-column-xs flex-justify-center flex-align-center fxLayoutGap-025 m-t-l">
           <button class="white-button" type="button" aria-label="Cancel action" onclick="closeOnEnter('dialog-edit',null)"
-                  onkeydown="closeOnEnter('dialog',event)">Cancel
+                  onkeydown="closeOnEnter('dialog-edit',event)">Cancel
           </button>
           <div style="width:2rem"></div>
           <button class="black-button blue-outline" type="button" aria-label="Confirm expense action"
-                  onclick="closeOnEnter('dialog-edit',null)"
-                  onkeydown="closeOnEnter('dialog-edit',event)">Confirm
+                  onclick="closeOnEnter('dialog-edit',null,true)"
+                  onkeydown="closeOnEnter('dialog-edit',event,true)">Confirm
           </button>
         </div>
       </form>
     </section>
   </div>
 
-  <div class="modal" id="dialog-remove">
+  <div class="modal" id="dialog-remove" role="dialog">
     <section class="modal-content">
       <div class="flex flex-justify-end">
         <button aria-label="close popup" type="button" id="closeButton-dialog-remove" class="transparent"
@@ -208,7 +221,7 @@
     </section>
   </div>
 
-  <div class="modal" id="dialog-submit">
+  <div class="modal" id="dialog-submit" role="dialog">
     <section class="modal-content">
       <div class="flex flex-justify-end">
         <button aria-label="close popup" type="button" id="closeButton-dialog-submit" class="transparent"
@@ -225,7 +238,7 @@
       <h1 class="black center">Data was send</h1>
       <div class="flex flex-column-xs fxLayoutGap-025 flex-justify-center flex-align-center m-t-l">
         <button class="black-button blue-outline" type="button" aria-label="close popup" onclick="closeOnEnter('dialog-submit',null)"
-                onkeydown="closeOnEnter('dialog-submit',event)">Close
+                onkeydown="closeOnEnter('dialog-submit',event,true)">Close
         </button>
       </div>
     </section>
@@ -282,7 +295,7 @@
   let lastFocusElem;
   loadItems();
   const customEvent = new Event('close');
-
+  var disabledHandle;
   addListenerOnEscButton();
   const dialogSubmit = document.getElementById('dialog-submit');
   const dialogEdit = document.getElementById('dialog-edit');
@@ -328,17 +341,30 @@
     })
   }
 
-  function closeOnEnter(dialogName, event) {
+  function closeOnEnter(dialogName, event, validateFields = false) {
+    if (validateFields && !validateEditFields()) {
+      return;
+    }
+
     if (event && event.keyCode === 13) {
       document.getElementById('closeButton' + '-' + dialogName).click();
     } else if (!event) {
       document.getElementById(dialogName).style.display = 'none';
-      document.getElementById(dialogName).dispatchEvent(customEvent);
+      if (validateFields) {
+        document.getElementById(dialogName).dispatchEvent(customEvent);
+      } else {
+        removeValidationErrors();
+      }
       document.getElementById('name').value = '';
       document.getElementById('price').value = '';
-      lastFocusElem.focus();
-    }
 
+      if (dialogName === 'dialog-submit') {
+        onClose();
+      } else {
+        disabledHandle.disengage();
+        lastFocusElem.focus();
+      }
+    }
   }
 
   function goToStep2(e) {
@@ -371,9 +397,15 @@
   }
 
   function openModal(dialogName, buttonName, trIndex) {
+    const el = document.getElementById(dialogName);
+    el.style.display = 'flex';
+    disabledHandle = ally.maintain.disabled({
+                                              filter: el,
+                                            });
     if (trIndex) {
       setChosenElementByTrIndex(trIndex);
     }
+    document.getElementById('name').focus();
     if (dialogName === 'dialog-edit') {
       editElement();
     }
@@ -381,7 +413,6 @@
       document.getElementById('chosen_element_data').innerHTML = chosenElem.name + ': ' + chosenElem.price;
     }
     lastFocusElem = document.getElementById(buttonName);
-    document.getElementById(dialogName).style.display = 'flex';
   }
 
   function setChosenElementByTrIndex(trIndex) {
@@ -397,26 +428,76 @@
     createRows();
   }
 
+  function validateAddFields() {
+    if (!document.getElementById('name').value) {
+      document.querySelector('#dialog form .name-field').classList.add('invalid');
+      document.getElementById('name').focus();
+    } else {
+      document.querySelector('#dialog form .name-field').classList.remove('invalid');
+    }
+    if (!document.getElementById('price').value) {
+      document.querySelector('#dialog form .price-field').classList.add('invalid');
+      document.getElementById('price').focus();
+    } else {
+      document.querySelector('#dialog form .price-field').classList.remove('invalid');
+    }
+  }
+
+  function validateEditFields() {
+    const val1 = document.getElementById('name-edit').value;
+    const val2 = document.getElementById('price-edit').value;
+    if (!val1) {
+      document.querySelector('#dialog-edit form .name-edit-field').classList.add('invalid');
+      document.getElementById('name-edit').focus();
+    } else {
+      document.querySelector('#dialog-edit form .name-edit-field').classList.remove('invalid');
+    }
+    if (!val2) {
+      document.querySelector('#dialog-edit form .price-edit-field').classList.add('invalid');
+      document.getElementById('price-edit').focus();
+    } else {
+      document.querySelector('#dialog-edit form .price-edit-field').classList.remove('invalid');
+    }
+    return +(!!val1 && !!val2)
+
+  }
+
+  function removeValidationErrors() {
+    document.querySelector('#dialog-edit form .price-edit-field').classList.remove('invalid');
+    document.querySelector('#dialog-edit form .name-edit-field').classList.remove('invalid');
+    document.querySelector('#dialog form .price-field').classList.remove('invalid');
+    document.querySelector('#dialog form .name-field').classList.remove('invalid');
+  }
+
   function addElement() {
     let id = items.length;
     let name = document.getElementById('name').value;
     let price = document.getElementById('price').value;
-    items.push({id, name, price});
-    saveItems();
-    removeRows();
-    createRows();
+    if (name && price) {
+      items.push({id, name, price});
+      saveItems();
+      removeRows();
+      createRows();
+      closeOnEnter('dialog', null, false);
+    } else {
+      validateAddFields(true);
+    }
+
   }
 
   function editElement() {
     document.getElementById('price-edit').value = chosenElem.price;
     document.getElementById('name-edit').value = chosenElem.name;
-    dialogEdit.addEventListener('close', () => {
-      let name = document.getElementById('name-edit').value;
-      let price = document.getElementById('price-edit').value;
-      items[items.findIndex(el => el.id === +chosenElem.id)] = {id: +chosenElem.id, name, price};
-      saveItems();
-      removeRows();
-      createRows();
+    document.getElementById('name-edit').focus();
+    dialogEdit.addEventListener('close', (event) => {
+      if (document.getElementById('name-edit').value && document.getElementById('price-edit').value) {
+        let name = document.getElementById('name-edit').value;
+        let price = document.getElementById('price-edit').value;
+        items[items.findIndex(el => el.id === +chosenElem.id)] = {id: +chosenElem.id, name, price};
+        saveItems();
+        removeRows();
+        createRows();
+      }
     });
   }
 
@@ -495,7 +576,6 @@
       </svg>
     </button>`
   }
-
 
 </script>
 </body>
