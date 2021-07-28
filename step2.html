@@ -64,7 +64,7 @@
       <button aria-label="step 1 - personal details" class="gray-button " onclick="goToStep1()" onkeydown="goToStep1(e)">Step 1 - Personal
         details
       </button>
-      <button aria-label="step 2 - Incident details" class="gray-button active" onclick="goToStep2()" onkeydown="goToStep2(e)">Step 2 -
+      <button aria-label="step 2 - Incident details" id="button2"class="gray-button active" onclick="goToStep2()" onkeydown="goToStep2(e)">Step 2 -
         Incident details
       </button>
       <button disabled aria-label="Step 3 - Expense report" class="gray-button blue-outline" onclick="goToStep3()" onkeydown="goToStep3(e)">
@@ -74,32 +74,32 @@
     <form>
       <div id="step2" class="flex flex-column fxLayoutGap-1">
         <fieldset class="m-b-l flex flex-column fxLayoutGap-025" id="purposeOfTravel" aria-describedby="err_11">
-          <legend>Purpose of Travel (required)</legend>
-          <div>
-            <input type="radio" name="purposeOfTravel" id="radioTourism" class="m-r-l" >
+          <legend aria-label="Purpose of travel radio group">Purpose of Travel (required)</legend>
+          <div class="margin-tb-1">
+            <input type="radio" name="purposeOfTravel" id="radioTourism"  >
             <label for="radioTourism">Turism</label>
           </div>
-          <div>
-            <input type="radio" name="purposeOfTravel" id="radioStudy" class="m-r-l">
+          <div class="margin-tb-1">
+            <input type="radio" name="purposeOfTravel" id="radioStudy" >
             <label for="radioStudy">Study / mental Work</label>
           </div>
-          <div>
-            <input type="radio" name="purposeOfTravel" id="radioPhysical" class="m-r-l">
+          <div class="margin-tb-1">
+            <input type="radio" name="purposeOfTravel" id="radioPhysical" >
             <label for="radioPhysical">Physical work</label>
           </div>
-          <div>
-            <input type="radio" name="purposeOfTravel" id="radioSport" class="m-r-l">
+          <div class="margin-tb-1">
+            <input type="radio" name="purposeOfTravel" id="radioSport" >
             <label for="radioSport">High-risk sport</label>
           </div>
           <div>
-            <img class="icon" src="assets/error.png" alt="Error:"/>
+            <img class="icon" src="assets/error.png" alt=""/>
             <p class="error" id="err_11">Please enter your purpose of travel</p>
           </div>
         </fieldset>
         <div class="input-container flex flex-column fxLayoutGap-025" id="country_label" >
           <label for="country">
             Country
-            <img class="icon" src="assets/error.png" alt="Error:"/>
+            <img class="icon" src="assets/error.png" alt=""/>
           </label>
           <input type="text" name="country" id="country" aria-describedBy="err_0">
           <span class="error" id="err_0">Please enter your country</span>
@@ -107,22 +107,22 @@
         <div class="input-container flex flex-column fxLayoutGap-025" id="address_label">
           <label for="address">
             Address (required)
-            <img class="icon" src="assets/error.png" alt="Error:"/>
+            <img class="icon" src="assets/error.png" alt=""/>
           </label>
-          <input type="text" name="address" id="address" required aria-describedBy="err_1">
+          <input type="text" name="address" id="address" required aria-describedBy="err_1" autocomplete="street-address">
           <span class="error" id="err_1">Please enter your address</span>
 
         </div>
         <div class="input-container flex flex-column fxLayoutGap-025" id="date_label">
           <label for="date">Date (required)
-            <img class="icon" src="assets/error.png" alt="Error:"/>
+            <img class="icon" src="assets/error.png" alt=""/>
           </label>
           <input type="date" name="date" id="date" required aria-describedBy="err_2">
           <span class="error" id="err_2">Please enter your date of travel</span>
         </div>
         <div class="input-container flex flex-column fxLayoutGap-025" id="description_label">
           <label for="description">Incident description (required)
-            <img class="icon" src="assets/error.png" alt="Error:"/>
+            <img class="icon" src="assets/error.png" alt=""/>
           </label>
           <textarea name="description" id="description" cols="30" rows="10" required aria-describedBy="err_3"></textarea>
           <span class="error" id="err_3">Please enter your incident description</span>
@@ -267,16 +267,16 @@
 
   function validateField() {
     let errorCounter = 0;
-    errorCounter += this.checkFieldSet();
-    errorCounter += this.checkField('address');
     errorCounter += this.checkField('description');
     errorCounter += this.checkField('date');
+    errorCounter += this.checkField('address');
+    errorCounter += this.checkFieldSet();
 
     return errorCounter;
   }
 
   function setFocusOnFirstElementOnStep() {
-    document.getElementById('radioTourism').focus();
+    document.getElementById('button2').focus();
 
   }
 
