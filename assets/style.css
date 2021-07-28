@@ -2,6 +2,7 @@ body, html {
   height: 100%
 }
 
+
 .flex {
   display: flex;
   flex-direction: row;
@@ -54,7 +55,7 @@ body, html {
 }
 
 :focus {
-  outline-width: .25rem;
+  outline-width: 2px;
   outline-style: solid
 }
 
@@ -199,6 +200,16 @@ mat-dialog-container {
 .round-button {
   border-radius: 100%;
   border: 0
+}
+.round-button .icon-hover{
+  display: none;
+}
+.round-button:hover .icon{
+  display: none;
+}
+
+.round-button:hover .icon-hover{
+  display: block;
 }
 
 .icon {
@@ -532,7 +543,12 @@ fieldset div {
 }
 
 fieldset div input {
-  margin-top: 0;
+  width: 20px;
+  height: 16px;
+  margin-right:1rem;
+}
+fieldset .margin-tb-1{
+  margin:0.5rem 0;
 }
 
 fieldset .error, fieldset .icon {
