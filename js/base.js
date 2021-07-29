@@ -15,7 +15,7 @@ let formData = {
   radioStudy: '',
 };
 let items = [];
-
+let openMenuSwitch = false;
 
 function initializeData(step) {
   const locData = localStorage.getItem('formData');
@@ -97,4 +97,15 @@ function resetForm() {
   localStorage.setItem('formData', JSON.stringify(formData));
   saveItems();
 
+}
+
+function toggleMenu() {
+  openMenuSwitch = !openMenuSwitch;
+  if (openMenuSwitch) {
+    document.getElementById('menu-list').classList.add('show');
+    document.querySelector('.ext-button').classList.add('show');
+  } else {
+    document.getElementById('menu-list').classList.remove('show');
+    document.querySelector('.ext-button').classList.remove('show');
+  }
 }

@@ -18,6 +18,8 @@
 <header class="flex flex-spacebetween flex-align-center" id="header">
   <button class="menu no-hover-color" aria-haspopup="true" onclick="toggleMenu()">
     <img src="assets/square.png" alt="Open menu"/>
+  </button>
+  <div class="menu no-hover-color">
     <button aria-label="close popup" type="button" class="hidden ext-button" onclick="toggleMenu()">
       <svg class="icon" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;"
            xml:space="preserve"
@@ -27,9 +29,6 @@
 			l221.857,221.857c3.905,3.905,9.024,5.857,14.143,5.857s10.237-1.952,14.143-5.857c7.811-7.811,7.811-20.475,0-28.285
 			L284.286,256.002z"/></g></g></svg>
     </button>
-
-  </button>
-  <div class="menu no-hover-color">
     <ul class="menu-list hidden" id="menu-list">
       <li class="no-list-style" onclick="toggleMenu()">
         <a href="./index.html">Insurance</a>
@@ -51,7 +50,7 @@
   </section>
   <nav>
     <ul class="no-list-style flex fxLayoutGap-1">
-      <li class="min-width-link"><a href="./index.html" id="firstLink">Insurance</a></li>
+      <li class="min-width-link"><a href="./index.html" id="firstLink" aria-label="Home">Insurance</a></li>
       <li class="min-width-link"><a href="./aboutus.html">About us</a></li>
       <li class="min-width-link"><a href="./claim-report.html" class="active">Claim report</a></li>
       <li class="min-width-link"><a href="./contact.html">Contact</a></li>
@@ -117,7 +116,7 @@
 			L284.286,256.002z"/></g></g></svg>
         </button>
       </div>
-      <h1 style="text-align: center">Expense</h1>
+      <h2 style="text-align: center">Expense</h2>
       <form class="flex flex-column fxLayoutGap-025">
         <div class="flex flex-column fxLayoutGap-025 name-field input-container">
           <label for="name">Name
@@ -161,20 +160,20 @@
 			L284.286,256.002z"/></g></g></svg>
         </button>
       </div>
-      <h1 style="text-align: center">Expense dialog edit</h1>
+      <h2 style="text-align: center">Expense dialog edit</h2>
       <form class="flex flex-column fxLayoutGap-025">
         <div class="flex flex-column fxLayoutGap-025 input-container name-edit-field">
-          <label for="name">Name (required)
+          <label for="name-edit">Name (required)
             <img class="icon" src="assets/error.png" alt=""/>
           </label>
-          <input type="text" name="name" id="name-edit" required aria-describedBy="err_name-edit">
+          <input type="text" name="name-edit" id="name-edit" required aria-describedBy="err_name-edit">
           <span class="error" id="err_name-edit">Please enter expenses name</span>
         </div>
         <div class="flex flex-column fxLayoutGap-025 input-container price-edit-field">
-          <label for="price">Price (required)
+          <label for="price-edit">Price (required)
             <img class="icon" src="assets/error.png" alt=""/>
           </label>
-          <input type="text" name="price" id="price-edit" required aria-describedBy="err_price-edit">
+          <input type="text" name="price-edit" id="price-edit" required aria-describedBy="err_price-edit">
           <span class="error" id="err_price-edit">Please enter expenses price</span>
         </div>
         <div class="flex flex-column-xs flex-justify-center flex-align-center fxLayoutGap-025 m-t-l">
@@ -205,7 +204,7 @@
 			L284.286,256.002z"/></g></g></svg>
         </button>
       </div>
-      <h1 class="center">Expense</h1>
+      <h2 class="center">Expense</h2>
       <p>Are you sure that you want to delete this element?</p>
       <p id="chosen_element_data">{{data.name}}: {{data.price}}</p>
 
@@ -238,7 +237,7 @@
 			L284.286,256.002z"/></g></g></svg>
         </button>
       </div>
-      <h1 class="black center">Data was send</h1>
+      <h2 class="black center">Data was send</h2>
       <div class="flex flex-column-xs fxLayoutGap-025 flex-justify-center flex-align-center m-t-l">
         <button class="black-button blue-outline" type="button" aria-label="close popup" onclick="closeOnEnter('dialog-submit',null)"
                 onkeydown="closeOnEnter('dialog-submit',event,true)">Close
@@ -293,7 +292,6 @@
   </button>
 </footer>
 <script>
-  let openMenuSwitch = false;
   let chosenElem = {name: '', price: '', id: 0};
   let lastFocusElem;
   loadItems();
@@ -471,11 +469,3 @@
 </script>
 </body>
 </html>
-
-
-<!--todolist
-role-alert dla walidacji niech przeczyta wszystkie bledy
-step3:
-focus trap na modalu ma dotyczyc tylko modalu bez pasków adresu przegladaraki etc
-po usunieciu ustaw się na add button
-po usunieciu jak zostanie ustaw na caption tabeli-->
