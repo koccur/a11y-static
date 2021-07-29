@@ -4,7 +4,7 @@ function createRows() {
   if (items) {
     items.forEach((item, index) => {
       const itemEl = document.createElement('tr');
-      itemEl.id = 'tr_' + index;
+      itemEl.id = 'tr_' + item.id;
       const itemPriceTd = document.createElement('td');
       const itemNameTd = document.createElement('td');
       const removeButtonTd = document.createElement('td');
@@ -92,14 +92,6 @@ function createEditButton() {
     </button>`
 }
 
-function toggleMenu() {
-  openMenuSwitch = !openMenuSwitch;
-  if (openMenuSwitch) {
-    document.getElementById('menu-list').classList.add('show');
-  } else {
-    document.getElementById('menu-list').classList.remove('show');
-  }
-}
 
 function addListenerOnEscButton() {
   document.addEventListener('keydown', (event) => {
@@ -114,20 +106,16 @@ function addListenerOnEscButton() {
 
 function goToStep2(e) {
   if (e && e.keyCode === 13) {
-    dialogSubmit.removeEventListener('mousedown', onClose);
     window.location = './step2.html';
   } else if (!e) {
-    dialogSubmit.removeEventListener('mousedown', onClose);
     window.location = './step2.html';
   }
 }
 
 function goToStep1(e) {
   if (e && e.keyCode === 13) {
-    dialogSubmit.removeEventListener('mousedown', onClose);
     window.location = './claim-report.html';
   } else if (!e) {
-    dialogSubmit.removeEventListener('mousedown', onClose);
     window.location = './claim-report.html';
   }
 
