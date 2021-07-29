@@ -98,8 +98,8 @@
               onkeydown="goToStep2(event)">Return to Incident details
       </button>
       <div id="block-separator"></div>
-      <button id="submit" class="black-button blue-outline" type="button" aria-label="Submit data" onkeydown="openModal('dialog-submit','addButton')"
-              onclick="openModal('dialog-submit','addButton')">Submit
+      <button id="submit" class="black-button blue-outline" type="button" aria-label="Submit data" onkeydown="openModal('dialog-submit','addButton',null,event)"
+              onclick="openModal('dialog-submit','addButton',null,event)">Submit
       </button>
     </div>
   </section>
@@ -345,12 +345,12 @@
       document.getElementById('price').value = '';
       document.getElementById('addButton').focus();
       if (dialogName === 'dialog-submit') {
-        onCloseBackToStep1();
+        // onCloseBackToStep1();
       }
     }
   }
 
-  function openModal(dialogName, buttonName, trIndex) {
+  function openModal(dialogName, buttonName, trIndex,event) {
     const el = document.getElementById(dialogName);
     el.style.display = 'flex';
     if (trIndex) {
@@ -365,8 +365,9 @@
       document.getElementById('chosen_element_data').innerHTML = chosenElem.name + ': ' + chosenElem.price;
     }
     if(dialogName === 'dialog-submit'){
+      event.preventDefault();
+      event.stopPropagation();
       document.getElementById('close-button-submit').focus();
-
     }
   }
 
