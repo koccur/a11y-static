@@ -12,6 +12,10 @@
 <header class="flex flex-spacebetween flex-align-center" id="header">
   <button class="menu no-hover-color" aria-haspopup="true" onclick="toggleMenu()">
     <img src="assets/square.png" alt="Open menu"/>
+
+
+  </button>
+  <div class="menu no-hover-color">
     <button aria-label="close popup" type="button" class="hidden ext-button" onclick="toggleMenu()">
       <svg class="icon" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;"
            xml:space="preserve"
@@ -21,9 +25,6 @@
 			l221.857,221.857c3.905,3.905,9.024,5.857,14.143,5.857s10.237-1.952,14.143-5.857c7.811-7.811,7.811-20.475,0-28.285
 			L284.286,256.002z"/></g></g></svg>
     </button>
-
-  </button>
-  <div class="menu no-hover-color">
     <ul class="menu-list hidden" id="menu-list">
       <li class="no-list-style" onclick="toggleMenu()">
         <a href="./index.html">Insurance</a>
@@ -45,7 +46,7 @@
   </section>
   <nav>
     <ul class="no-list-style flex fxLayoutGap-1">
-      <li class="min-width-link"><a href="./index.html" id="firstLink">Insurance</a></li>
+      <li class="min-width-link"><a href="./index.html" id="firstLink" aria-label="Home">Insurance</a></li>
       <li class="min-width-link"><a href="./aboutus.html">About us</a></li>
       <li class="min-width-link"><a href="./claim-report.html" class="active">Claim report</a></li>
       <li class="min-width-link"><a href="./contact.html">Contact</a></li>
@@ -175,16 +176,6 @@
   setFocusOnFirstElementOnStep();
   initializeData(actualStep);
 
-  let openMenuSwitch = false;
-
-  function toggleMenu() {
-    openMenuSwitch = !openMenuSwitch;
-    if (openMenuSwitch) {
-      document.getElementById('menu-list').classList.add('show');
-    } else {
-      document.getElementById('menu-list').classList.remove('show');
-    }
-  }
 
   function scrollToTop() {
     window.scroll(0, 0);

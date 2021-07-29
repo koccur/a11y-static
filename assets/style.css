@@ -122,6 +122,9 @@ button:not([disabled]):hover {
   background: #232323;
   cursor: pointer
 }
+.ext-button:not([disabled]):hover{
+  background: inherit;
+}
 
 .gray-button {
   background: #bababa;
@@ -369,7 +372,7 @@ nav {
 .menu .ext-button {
   position: absolute;
   top: 0;
-  left: 15rem;
+  left: 14rem;
   z-index: 2;
   background: 0;
   border: 0;
@@ -404,6 +407,11 @@ nav {
   flex-direction: column;
   min-width: 15rem;
   text-align: left;
+}
+.menu .ext-button.show{
+  visibility: visible;
+  display: block;
+  height: auto;
 }
 
 @media screen and (min-width: 768px) {
