@@ -71,6 +71,7 @@ function saveData(step) {
 function saveItems(){
   localStorage.setItem('items',JSON.stringify(items));
 }
+
 function loadItems(){
   const itemsStorage =localStorage.getItem('items');
   items = itemsStorage?JSON.parse(itemsStorage):[];

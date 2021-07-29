@@ -52,7 +52,7 @@
   </section>
   <nav>
     <ul class="no-list-style flex fxLayoutGap-1">
-      <li class="min-width-link"><a href="./index.html" id="firstLink" >Insurance</a></li>
+      <li class="min-width-link"><a href="./index.html" id="firstLink">Insurance</a></li>
       <li class="min-width-link"><a href="./aboutus.html">About us</a></li>
       <li class="min-width-link"><a href="./claim-report.html" class="active">Claim report</a></li>
       <li class="min-width-link"><a href="./contact.html">Contact</a></li>
@@ -98,8 +98,8 @@
               onkeydown="goToStep2(event)">Return to Incident details
       </button>
       <div id="block-separator"></div>
-      <button id="submit" class="black-button blue-outline" type="button" aria-label="Submit data" onkeydown="onSubmit(event)"
-              onclick="onSubmit()">Submit
+      <button id="submit" class="black-button blue-outline" type="button" aria-label="Submit data" onkeydown="openModal('dialog-submit','addButton')"
+              onclick="openModal('dialog-submit','addButton')">Submit
       </button>
     </div>
   </section>
@@ -107,7 +107,8 @@
   <div class="modal" id="dialog" role="dialog">
     <section class="modal-content">
       <div class="flex flex-justify-end">
-        <button aria-label="close popup" id="closeButton-dialog" type="button" class="transparent" onclick="closeOnEnter('dialog',null)"
+        <button aria-label="close popup" id="closeButton-dialog" type="button" class="transparent"
+                onclick="closeOnEnter('dialog',null)"
                 onkeydown="closeOnEnter('dialog',event)">
           <svg class="icon" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;"
                xml:space="preserve"
@@ -124,18 +125,19 @@
           <label for="name">Name
             <img class="icon" src="assets/error.png" alt=""/>
           </label>
-          <input type="text" name="name" id="name" aria-describedBy="err_name">
+          <input type="text" name="name" id="name" aria-describedBy="err_name" required>
           <span class="error" id="err_name">Please enter expenses name</span>
         </div>
         <div class="flex flex-column fxLayoutGap-025 price-field input-container">
           <label for="price">Price
             <img class="icon" src="assets/error.png" alt=""/>
           </label>
-          <input type="text" name="price" id="price" aria-describedBy="err_price">
+          <input type="text" name="price" id="price" aria-describedBy="err_price" required>
           <span class="error" id="err_price">Please enter expenses price</span>
         </div>
         <div class="flex flex-column-xs flex-justify-center flex-align-center fxLayoutGap-025 m-t-l">
-          <button class="white-button" type="button" aria-label="Cancel action" onclick="closeOnEnter('dialog',null)"
+          <button class="white-button" type="button" aria-label="Cancel action"
+                  onclick="closeOnEnter('dialog',null)"
                   onkeydown="closeOnEnter('dialog',event)">Cancel
           </button>
           <div style="width:2rem"></div>
@@ -151,8 +153,8 @@
     <section class="modal-content">
       <div class="flex flex-justify-end">
         <button aria-label="close popup" id="closeButton-dialog-edit" type="button" class="transparent"
-                onclick="closeOnEnter('dialog-edit',null)"
-                onkeydown="closeOnEnter('dialog-edit',event)">
+                onclick="setCancelOrSubmitEdit('cancel');closeOnEnter('dialog-edit',null)"
+                onkeydown="setCancelOrSubmitEdit('cancel');closeOnEnter('dialog-edit',event)">
           <svg class="icon" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;"
                xml:space="preserve"
                aria-label="close popup icon"><g><g><path d="M284.286,256.002L506.143,34.144c7.811-7.811,7.811-20.475,0-28.285c-7.811-7.81-20.475-7.811-28.285,0L256,227.717
@@ -179,13 +181,14 @@
           <span class="error" id="err_price-edit">Please enter expenses price</span>
         </div>
         <div class="flex flex-column-xs flex-justify-center flex-align-center fxLayoutGap-025 m-t-l">
-          <button class="white-button" type="button" aria-label="Cancel action" onclick="closeOnEnter('dialog-edit',null)"
-                  onkeydown="closeOnEnter('dialog-edit',event)">Cancel
+          <button class="white-button" type="button" aria-label="Cancel action"
+                  onclick="  setCancelOrSubmitEdit('cancel');closeOnEnter('dialog-edit',null)"
+                  onkeydown="setCancelOrSubmitEdit('cancel');closeOnEnter('dialog-edit',event)">Cancel
           </button>
           <div style="width:2rem"></div>
           <button class="black-button blue-outline" type="button" aria-label="Confirm expense action"
-                  onclick="closeOnEnter('dialog-edit',null,true)"
-                  onkeydown="closeOnEnter('dialog-edit',event,true)">Confirm
+                  onclick="setCancelOrSubmitEdit('submit');closeOnEnter('dialog-edit',null,true)"
+                  onkeydown="setCancelOrSubmitEdit('submit');closeOnEnter('dialog-edit',event,true)">Confirm
           </button>
         </div>
       </form>
@@ -218,8 +221,8 @@
         <div style="width:2rem"></div>
         <button class="black-button blue-outline" type="button" aria-label="Remove element"
                 id="submit-remove"
-                onclick="removeElement();closeOnEnter('dialog-remove',null)"
-                onkeydown="removeElement();closeOnEnter('dialog-remove',event)">Remove
+                onclick="removeElement(event);closeOnEnter('dialog-remove',null)"
+                onkeydown="removeElement(event);closeOnEnter('dialog-remove',event)">Remove
         </button>
       </div>
     </section>
@@ -241,7 +244,8 @@
       </div>
       <h2 class="black center">Data was send</h2>
       <div class="flex flex-column-xs fxLayoutGap-025 flex-justify-center flex-align-center m-t-l">
-        <button class="black-button blue-outline" type="button" aria-label="close popup" onclick="closeOnEnter('dialog-submit',null)"
+        <button id="close-button-submit" class="black-button blue-outline" type="button" aria-label="close popup"
+                onclick="closeOnEnter('dialog-submit',null)"
                 onkeydown="closeOnEnter('dialog-submit',event,true)">Close
         </button>
       </div>
@@ -252,7 +256,7 @@
 <footer class="flex flex-column flex-md-row flex-spacebetween gray-background ">
   <section class="avatar-section flex flex-align-center flex-justify-start" aria-label="insurer footer">
     <p class="h2-size">The insurer</p>
-    <img class="avatar" src="assets/Circle_Grey_Solid.png" alt="picture of something very important / Insurer avatar"/>
+    <img class="avatar" src="assets/Circle_Grey_Solid.png" alt="logo"/>
   </section>
 
   <nav aria-label="links" class="flex">
@@ -295,7 +299,7 @@
 </footer>
 <script>
   let chosenElem = {name: '', price: '', id: 0};
-  let lastFocusElem;
+  let cancelOrSubmit;
   loadItems();
   const customEvent = new Event('close');
   addListenerOnEscButton();
@@ -309,15 +313,12 @@
   dialogAdd.style.display = "none";
   dialogRemove.style.display = "none";
 
-  dialogAdd.addEventListener('close', () => {
-    document.getElementById('name').value = '';
-    document.getElementById('price').value = '';
-  })
-
   createRows();
   setFocusOnFirstElementOnStep();
+  initializeEditListener();
+  initializeAddListener();
 
-  function onClose() {
+  function onCloseBackToStep1() {
     setTimeout(() => {
       goToStep1();
     }, 500)
@@ -328,8 +329,11 @@
       return;
     }
 
-    if (event && event.keyCode === 13) {
+    if (event && (event.keyCode === 13 || event.keyCode === 32)) {
+      document.getElementById(dialogName).dispatchEvent(customEvent);
       document.getElementById('closeButton' + '-' + dialogName).click();
+      event.stopPropagation();
+      event.preventDefault();
     } else if (!event) {
       document.getElementById(dialogName).style.display = 'none';
       if (validateFields) {
@@ -341,7 +345,7 @@
       document.getElementById('price').value = '';
       document.getElementById('addButton').focus();
       if (dialogName === 'dialog-submit') {
-        onClose();
+        onCloseBackToStep1();
       }
     }
   }
@@ -360,6 +364,10 @@
       document.getElementById('submit-remove').focus();
       document.getElementById('chosen_element_data').innerHTML = chosenElem.name + ': ' + chosenElem.price;
     }
+    if(dialogName === 'dialog-submit'){
+      document.getElementById('close-button-submit').focus();
+
+    }
   }
 
   function setChosenElementByTrIndex(trIndex) {
@@ -368,13 +376,12 @@
     chosenElem.id = trIndex.slice(3, 4);
   }
 
-  function removeElement() {
+  function removeElement(event) {
     if (event && (event.keyCode === 13 || event.keyCode === 32)) {
       items = items.filter(el => el.id !== +chosenElem.id);
       saveItems();
       removeRows();
       createRows();
-      document.getElementById('addButton').focus();
     }
   }
 
@@ -420,7 +427,7 @@
   }
 
   function addElement() {
-    let id = items.length;
+    let id = items.length ? items[items.length - 1].id + 1 : 0;
     let name = document.getElementById('name').value;
     let price = document.getElementById('price').value;
     if (name && price) {
@@ -432,14 +439,23 @@
     } else {
       validateAddFields(true);
     }
-
   }
 
   function editElement() {
     document.getElementById('price-edit').value = chosenElem.price;
     document.getElementById('name-edit').value = chosenElem.name;
     document.getElementById('name-edit').focus();
+  }
+
+  function setFocusOnFirstElementOnStep() {
+    document.getElementById('button3').focus();
+  }
+
+  function initializeEditListener() {
     dialogEdit.addEventListener('close', (event) => {
+      if(cancelOrSubmit==='cancel'){
+        return;
+      }
       if (document.getElementById('name-edit').value && document.getElementById('price-edit').value) {
         let name = document.getElementById('name-edit').value;
         let price = document.getElementById('price-edit').value;
@@ -451,20 +467,14 @@
     });
   }
 
-  function onSubmit(e) {
-    if (e && e.keyCode === 13) {
-      dialogSubmit.style.display = "flex"
-      dialogSubmit.addEventListener('close', onClose);
-      resetForm();
-    } else if (!e) {
-      dialogSubmit.style.display = "flex"
-      dialogSubmit.addEventListener('close', onClose);
-      resetForm();
-    }
+  function initializeAddListener() {
+    dialogAdd.addEventListener('close', () => {
+      document.getElementById('name').value = '';
+      document.getElementById('price').value = '';
+    })
   }
-
-  function setFocusOnFirstElementOnStep() {
-    document.getElementById('button3').focus();
+  function setCancelOrSubmitEdit(s){
+    cancelOrSubmit = s;
   }
 
 
