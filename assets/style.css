@@ -545,6 +545,9 @@ form .input-container.invalid .error {
 
 }
 
+fieldset{
+  border-color:rgb(123, 123, 123);
+}
 fieldset div {
   display: flex;
   align-items: center;

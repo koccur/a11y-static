@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>A11y - Claim report</title>
+  <title>A11y - Claim report - Step 3 - Expense report</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <!--  <link rel="preconnect" href="https://fonts.gstatic.com">-->
@@ -47,7 +47,7 @@
   <section aria-label="insurer header" class="flex flex-justify-start flex-align-center">
     <p class="h2-size">The insurer</p>
     <a href="index.html" aria-label="Home" class="flex flex-align-center">
-      <img class="avatar" src="assets/Circle_Grey_Solid.png" alt="Logo"/>
+      <img class="avatar" src="assets/Circle_Grey_Solid.png" alt="Return to home page"/>
     </a>
   </section>
   <nav>
@@ -88,7 +88,7 @@
           </thead>
         </table>
         <button aria-haspopup="true" id="addButton" class="stick-to-right-button" type="button"
-                aria-label="add another expense, button open popup"
+                aria-label="add another expense popup"
                 onclick="openModal('dialog','addButton')"> + Add another expense
         </button>
       </div>
@@ -98,8 +98,9 @@
               onkeydown="goToStep2(event)">Return to Incident details
       </button>
       <div id="block-separator"></div>
-      <button id="submit" class="black-button blue-outline" type="button" aria-label="Submit data" onkeydown="openModal('dialog-submit','addButton',null,event)"
-              onclick="openModal('dialog-submit','addButton',null,event)">Submit
+      <button id="submit" class="black-button blue-outline" type="button" aria-label="Submit data"
+              onkeydown="openModal('dialog-submit','submit',null,event)"
+              onclick="openModal('dialog-submit','submit',null,event)">Submit
       </button>
     </div>
   </section>
@@ -108,8 +109,8 @@
     <section class="modal-content">
       <div class="flex flex-justify-end">
         <button aria-label="close popup" id="closeButton-dialog" type="button" class="transparent"
-                onclick="closeOnEnter('dialog',null)"
-                onkeydown="closeOnEnter('dialog',event)">
+                onclick="closeOnEnter('dialog',null,'addButton')"
+                onkeydown="closeOnEnter('dialog',event,'addButton')">
           <svg class="icon" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;"
                xml:space="preserve"
                aria-label="close popup icon"><g><g><path d="M284.286,256.002L506.143,34.144c7.811-7.811,7.811-20.475,0-28.285c-7.811-7.81-20.475-7.811-28.285,0L256,227.717
@@ -137,8 +138,8 @@
         </div>
         <div class="flex flex-column-xs flex-justify-center flex-align-center fxLayoutGap-025 m-t-l">
           <button class="white-button" type="button" aria-label="Cancel action"
-                  onclick="closeOnEnter('dialog',null)"
-                  onkeydown="closeOnEnter('dialog',event)">Cancel
+                  onclick="closeOnEnter('dialog',null,'addButton')"
+                  onkeydown="closeOnEnter('dialog',event,'addButton')">Cancel
           </button>
           <div style="width:2rem"></div>
           <button class="black-button blue-outline" type="button" aria-label="Confirm expense action"
@@ -153,8 +154,8 @@
     <section class="modal-content">
       <div class="flex flex-justify-end">
         <button aria-label="close popup" id="closeButton-dialog-edit" type="button" class="transparent"
-                onclick="setCancelOrSubmitEdit('cancel');closeOnEnter('dialog-edit',null)"
-                onkeydown="setCancelOrSubmitEdit('cancel');closeOnEnter('dialog-edit',event)">
+                onclick="setCancelOrSubmitEdit('cancel');closeOnEnter('dialog-edit',null,lastFocusedElement)"
+                onkeydown="setCancelOrSubmitEdit('cancel');closeOnEnter('dialog-edit',event,lastFocusedElement)">
           <svg class="icon" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;"
                xml:space="preserve"
                aria-label="close popup icon"><g><g><path d="M284.286,256.002L506.143,34.144c7.811-7.811,7.811-20.475,0-28.285c-7.811-7.81-20.475-7.811-28.285,0L256,227.717
@@ -182,13 +183,13 @@
         </div>
         <div class="flex flex-column-xs flex-justify-center flex-align-center fxLayoutGap-025 m-t-l">
           <button class="white-button" type="button" aria-label="Cancel action"
-                  onclick="  setCancelOrSubmitEdit('cancel');closeOnEnter('dialog-edit',null)"
-                  onkeydown="setCancelOrSubmitEdit('cancel');closeOnEnter('dialog-edit',event)">Cancel
+                  onclick="  setCancelOrSubmitEdit('cancel');closeOnEnter('dialog-edit',null,lastFocusedElement)"
+                  onkeydown="setCancelOrSubmitEdit('cancel');closeOnEnter('dialog-edit',event,lastFocusedElement)">Cancel
           </button>
           <div style="width:2rem"></div>
           <button class="black-button blue-outline" type="button" aria-label="Confirm expense action"
-                  onclick="setCancelOrSubmitEdit('submit');closeOnEnter('dialog-edit',null,true)"
-                  onkeydown="setCancelOrSubmitEdit('submit');closeOnEnter('dialog-edit',event,true)">Confirm
+                  onclick="setCancelOrSubmitEdit('submit');closeOnEnter('dialog-edit',null,lastFocusedElement,true)"
+                  onkeydown="setCancelOrSubmitEdit('submit');closeOnEnter('dialog-edit',event,lastFocusedElement,true)">Confirm
           </button>
         </div>
       </form>
@@ -199,7 +200,7 @@
     <section class="modal-content">
       <div class="flex flex-justify-end">
         <button aria-label="close popup" type="button" id="closeButton-dialog-remove" class="transparent"
-                onclick="closeOnEnter('dialog-remove',null)" onkeydown="closeOnEnter('dialog-remove',event)">
+                onclick="closeOnEnter('dialog-remove',null)" onkeydown="closeOnEnter('dialog-remove',event,lastFocusedElement)">
           <svg class="icon" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;"
                xml:space="preserve"
                aria-label="close popup icon"><g><g><path d="M284.286,256.002L506.143,34.144c7.811-7.811,7.811-20.475,0-28.285c-7.811-7.81-20.475-7.811-28.285,0L256,227.717
@@ -214,15 +215,15 @@
       <p id="chosen_element_data">{{data.name}}: {{data.price}}</p>
 
       <div class="m-t-l flex flex-column-xs fxLayoutGap-025 flex-justify-center flex-align-center">
-        <button class="white-button" type="button" aria-label="Cancel action" onclick="closeOnEnter('dialog-remove',null)"
-                onkeydown="closeOnEnter('dialog-remove',event)">
+        <button class="white-button" type="button" aria-label="Cancel action" onclick="closeOnEnter('dialog-remove',null,lastFocusedElement)"
+                onkeydown="closeOnEnter('dialog-remove',event,lastFocusedElement)">
           Cancel
         </button>
         <div style="width:2rem"></div>
         <button class="black-button blue-outline" type="button" aria-label="Remove element"
                 id="submit-remove"
-                onclick="removeElement(event);closeOnEnter('dialog-remove',null)"
-                onkeydown="removeElement(event);closeOnEnter('dialog-remove',event)">Remove
+                onclick="removeElement(event);closeOnEnter('dialog-remove',null,lastFocusedElement)"
+                onkeydown="removeElement(event);closeOnEnter('dialog-remove',event,lastFocusedElement)">Remove
         </button>
       </div>
     </section>
@@ -246,7 +247,7 @@
       <div class="flex flex-column-xs fxLayoutGap-025 flex-justify-center flex-align-center m-t-l">
         <button id="close-button-submit" class="black-button blue-outline" type="button" aria-label="close popup"
                 onclick="closeOnEnter('dialog-submit',null)"
-                onkeydown="closeOnEnter('dialog-submit',event,true)">Close
+                onkeydown="closeOnEnter('dialog-submit',event,null,true)">Close
         </button>
       </div>
     </section>
@@ -256,7 +257,7 @@
 <footer class="flex flex-column flex-md-row flex-spacebetween gray-background ">
   <section class="avatar-section flex flex-align-center flex-justify-start" aria-label="insurer footer">
     <p class="h2-size">The insurer</p>
-    <img class="avatar" src="assets/Circle_Grey_Solid.png" alt="logo"/>
+    <img class="avatar" src="assets/Circle_Grey_Solid.png" alt="Return to home page"/>
   </section>
 
   <nav aria-label="links" class="flex">
@@ -300,6 +301,7 @@
 <script>
   let chosenElem = {name: '', price: '', id: 0};
   let cancelOrSubmit;
+  let lastFocusedElement;
   loadItems();
   const customEvent = new Event('close');
   addListenerOnEscButton();
@@ -324,7 +326,7 @@
     }, 500)
   }
 
-  function closeOnEnter(dialogName, event, validateFields = false) {
+  function closeOnEnter(dialogName, event, lastFocusPlace, validateFields = false) {
     if (validateFields && !validateEditFields()) {
       return;
     }
@@ -332,6 +334,11 @@
     if (event && (event.keyCode === 13 || event.keyCode === 32)) {
       document.getElementById(dialogName).dispatchEvent(customEvent);
       document.getElementById('closeButton' + '-' + dialogName).click();
+      if(dialogName==='dialog-remove'){
+        document.querySelector('#removeButton').focus();
+      }else{
+        document.querySelector(lastFocusPlace).focus();
+      }
       event.stopPropagation();
       event.preventDefault();
     } else if (!event) {
@@ -343,18 +350,25 @@
       }
       document.getElementById('name').value = '';
       document.getElementById('price').value = '';
-      document.getElementById('addButton').focus();
+      if(lastFocusPlace){
+        document.getElementById(lastFocusPlace).focus();
+      }
+
       if (dialogName === 'dialog-submit') {
         onCloseBackToStep1();
       }
     }
   }
 
-  function openModal(dialogName, buttonName, trIndex,event) {
+  function openModal(dialogName, buttonName, trIndex, event) {
+    if (event && (event.keyCode !== 13 && event.keyCode !== 32)) {
+      return;
+    }
     const el = document.getElementById(dialogName);
     el.style.display = 'flex';
     if (trIndex) {
       setChosenElementByTrIndex(trIndex);
+      lastFocusedElement = '#'+trIndex + ' ' + '#'+buttonName;
     }
     document.getElementById('name').focus();
     if (dialogName === 'dialog-edit') {
@@ -364,7 +378,7 @@
       document.getElementById('submit-remove').focus();
       document.getElementById('chosen_element_data').innerHTML = chosenElem.name + ': ' + chosenElem.price;
     }
-    if(dialogName === 'dialog-submit'){
+    if (dialogName === 'dialog-submit') {
       event.preventDefault();
       event.stopPropagation();
       document.getElementById('close-button-submit').focus();
@@ -436,7 +450,7 @@
       saveItems();
       removeRows();
       createRows();
-      closeOnEnter('dialog', null, false);
+      closeOnEnter('dialog', null,'addButton', false);
     } else {
       validateAddFields(true);
     }
@@ -454,7 +468,7 @@
 
   function initializeEditListener() {
     dialogEdit.addEventListener('close', (event) => {
-      if(cancelOrSubmit==='cancel'){
+      if (cancelOrSubmit === 'cancel') {
         return;
       }
       if (document.getElementById('name-edit').value && document.getElementById('price-edit').value) {
@@ -474,7 +488,8 @@
       document.getElementById('price').value = '';
     })
   }
-  function setCancelOrSubmitEdit(s){
+
+  function setCancelOrSubmitEdit(s) {
     cancelOrSubmit = s;
   }
 
