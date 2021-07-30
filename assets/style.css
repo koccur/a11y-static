@@ -508,12 +508,16 @@ form .table-container table tr > th:nth-child(1) {
   width: 25%;
 }
 
-form .table-container table tr > th:nth-child(2) {
-  font-weight: 400;
-}
-
 form .table-container table tr > th:nth-child(3){
   width: 25%;
+}
+
+
+table caption{
+  font-weight: 600;
+}
+table tr th{
+  font-weight: 600;
 }
 
 .stick-to-right-button {
@@ -684,6 +688,11 @@ input{
   max-width: 100%;
 }
 
+@media screen and (max-width: 420px) {
+  form .table-container{
+    padding:0 1rem;
+  }
+}
 @media screen and (max-width: 767px) {
   .flex-column-xs {
     flex-direction: column;
