@@ -170,8 +170,9 @@ footer, main section {
   margin: .5rem 0;
   position: relative
 }
-footer section >p{
+footer section >h2{
   font-weight: 600;
+  font-size: 1.1rem;
 }
 
 
