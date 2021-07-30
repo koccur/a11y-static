@@ -2,6 +2,24 @@ body, html {
   height: 100%
 }
 
+#toast{
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+}
+#toast.show{
+  visibility: visible;
+}
+
 
 .flex {
   display: flex;
@@ -151,6 +169,9 @@ footer, main section {
   padding: 1.5rem;
   margin: .5rem 0;
   position: relative
+}
+footer section >p{
+  font-weight: 600;
 }
 
 
@@ -308,7 +329,7 @@ p, em {
 }
 
 .no-hover-color:hover {
-  background: inherit;
+  background: inherit !important;
 }
 
 .floating-button {
@@ -413,6 +434,16 @@ nav {
   display: block;
   height: auto;
 }
+#header .menu .show-on-hover{
+  display: none;
+}
+#header .menu:hover img{
+  display: none;
+}
+#header .menu:hover .show-on-hover{
+  display: block;
+}
+
 
 @media screen and (min-width: 768px) {
   nav {
@@ -452,7 +483,7 @@ form input {
 }
 
 form .table-container {
-  padding: 0 4rem;
+  padding: 0 2rem;
 }
 
 form .table-container table {
@@ -638,12 +669,26 @@ fieldset.invalid legend {
 .modal form.invalid .error{
   display: block;
 }
-
+td:nth-child(1),td:nth-child(2){
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 4rem;
+}
+#chosen_element_data{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
+}
+input{
+  max-width: 100%;
+}
 
 @media screen and (max-width: 767px) {
   .flex-column-xs {
     flex-direction: column;
   }
+
+
 }
 
 @media screen and (min-width: 768px) {
@@ -654,6 +699,9 @@ fieldset.invalid legend {
 
   #block-separator {
     display: block;
+  }
+  form .table-container {
+    padding: 0 4rem;
   }
 }
 

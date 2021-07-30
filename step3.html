@@ -5,9 +5,6 @@
   <title>A11y - Claim report - Step 3 - Expense report</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <!--  <link rel="preconnect" href="https://fonts.gstatic.com">-->
-  <!--  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">-->
-  <!--  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
   <link rel="stylesheet" href="assets/style.css">
   <script src="https://cdn.jsdelivr.net/ally.js/1.4.1/ally.min.js"></script>
   <script src="js/base.js"></script>
@@ -18,6 +15,7 @@
 <header class="flex flex-spacebetween flex-align-center" id="header">
   <button class="menu no-hover-color" aria-haspopup="true" onclick="toggleMenu()">
     <img src="assets/square.png" alt="Open menu"/>
+    <img class="show-on-hover" src="assets/squere-black.png" alt="Open menu"/>
   </button>
   <div class="menu no-hover-color">
     <button aria-label="close popup" type="button" class="hidden ext-button" onclick="toggleMenu()">
@@ -60,7 +58,7 @@
   </nav>
 
 </header>
-<main class="flex flex-column">
+<main class="flex flex-column" id="main">
   <section class="flex border-top flex-column flex-align-center flex-justify-center fxLayoutGap-1">
     <h1 class="biggerFont">Claim report</h1>
     <div class="m-t-l flex fxLayoutGap-15 flex-column-xs">
@@ -100,7 +98,7 @@
       <div id="block-separator"></div>
       <button id="submit" class="black-button blue-outline" type="button" aria-label="Submit data"
               onkeydown="openModal('dialog-submit','submit',null,event)"
-              onclick="openModal('dialog-submit','submit',null,event)">Submit
+              onclick="openModal('dialog-submit','submit',null,null)">Submit
       </button>
     </div>
   </section>
@@ -200,7 +198,7 @@
     <section class="modal-content">
       <div class="flex flex-justify-end">
         <button aria-label="close popup" type="button" id="closeButton-dialog-remove" class="transparent"
-                onclick="closeOnEnter('dialog-remove',null)" onkeydown="closeOnEnter('dialog-remove',event,lastFocusedElement)">
+                onclick="closeOnEnter('dialog-remove',null,lastFocusedElement)" onkeydown="closeOnEnter('dialog-remove',event,lastFocusedElement)">
           <svg class="icon" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;"
                xml:space="preserve"
                aria-label="close popup icon"><g><g><path d="M284.286,256.002L506.143,34.144c7.811-7.811,7.811-20.475,0-28.285c-7.811-7.81-20.475-7.811-28.285,0L256,227.717
@@ -215,7 +213,8 @@
       <p id="chosen_element_data">{{data.name}}: {{data.price}}</p>
 
       <div class="m-t-l flex flex-column-xs fxLayoutGap-025 flex-justify-center flex-align-center">
-        <button class="white-button" type="button" aria-label="Cancel action" onclick="closeOnEnter('dialog-remove',null,lastFocusedElement)"
+        <button class="white-button" type="button" aria-label="Cancel action"
+                onclick="closeOnEnter('dialog-remove',null,lastFocusedElement)"
                 onkeydown="closeOnEnter('dialog-remove',event,lastFocusedElement)">
           Cancel
         </button>
@@ -252,7 +251,19 @@
       </div>
     </section>
   </div>
-
+  <div id="toast" role="status">
+    <button aria-label="close toast" type="button" id="closeButton-toast" class="transparent"
+            onClick="hideToast(null)" onKeyDown="hideToast(event)">
+      <svg class="icon" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;"
+           xml:space="preserve"
+           aria-label="close popup icon"><g><g><path d="M284.286,256.002L506.143,34.144c7.811-7.811,7.811-20.475,0-28.285c-7.811-7.81-20.475-7.811-28.285,0L256,227.717
+			L34.143,5.859c-7.811-7.811-20.475-7.811-28.285,0c-7.81,7.811-7.811,20.475,0,28.285l221.857,221.857L5.858,477.859
+			c-7.811,7.811-7.811,20.475,0,28.285c3.905,3.905,9.024,5.857,14.143,5.857c5.119,0,10.237-1.952,14.143-5.857L256,284.287
+			l221.857,221.857c3.905,3.905,9.024,5.857,14.143,5.857s10.237-1.952,14.143-5.857c7.811-7.811,7.811-20.475,0-28.285
+			L284.286,256.002z"/></g></g></svg>
+    </button>
+    <p id="message-placeholder">Some text</p>
+  </div>
 </main>
 <footer class="flex flex-column flex-md-row flex-spacebetween gray-background ">
   <section class="avatar-section flex flex-align-center flex-justify-start" aria-label="insurer footer">
@@ -261,17 +272,17 @@
   </section>
 
   <nav aria-label="links" class="flex">
-    <div class="flex flex-column">
-      <p class="m-b-0"><strong>About us</strong></p>
+    <section class="flex flex-column">
+      <p class="m-b-0">About us</p>
       <ul aria-label="aboutUs" class="no-list-style">
         <li class="p-sm p-l-0 touch-space"><a href="./newsroom.html">Newsroom</a></li>
         <li class="p-sm p-l-0 touch-space"><a href="./careers.html">Careers</a></li>
         <li class="p-sm p-l-0 touch-space"><a href="./our.html">Our story</a></li>
         <li class="p-sm p-l-0 touch-space"><a href="./customer.html">Customer Stories</a></li>
       </ul>
-    </div>
-    <div class="flex flex-column">
-      <p class="m-b-0"><strong>Products</strong></p>
+    </section>
+    <section  class="flex flex-column">
+      <p class="m-b-0">Products</p>
       <ul aria-label="products" class="no-list-style">
         <li class="p-sm p-l-0 touch-space"><a href="./vacation.html">Vacation / Holiday</a></li>
         <li class="p-sm p-l-0 touch-space"><a href="./student.html">Student / Scholar</a></li>
@@ -279,9 +290,9 @@
         <li class="p-sm p-l-0 touch-space"><a href="./marine.html">Marine Captain / Crew</a></li>
         <li class="p-sm p-l-0 touch-space"><a href="./employer.html">Employer / Bussiness Traveler</a></li>
       </ul>
-    </div>
-    <div class="flex flex-column">
-      <p class="m-b-0"><strong>Members</strong></p>
+    </section>
+    <section class="flex flex-column">
+      <p class="m-b-0">Members</p>
       <ul aria-label="members" class="no-list-style">
         <li class="p-sm p-l-0 touch-space"><a href="./forms.html">Forms Library</a></li>
         <li class="p-sm p-l-0 touch-space"><a href="./find.html">Find a Doctor</a></li>
@@ -289,7 +300,7 @@
         <li class="p-sm p-l-0 touch-space"><a href="./claims.html">Claims Center</a></li>
         <li class="p-sm p-l-0 touch-space"><a href="./sitemap.xml">Sitemap</a></li>
       </ul>
-    </div>
+    </section>
   </nav>
   <button type="button" class="floating-button" onclick="function scrollToTop() {
     window.scroll(0,0);
@@ -334,14 +345,15 @@
     if (event && (event.keyCode === 13 || event.keyCode === 32)) {
       document.getElementById(dialogName).dispatchEvent(customEvent);
       document.getElementById('closeButton' + '-' + dialogName).click();
-      if(dialogName==='dialog-remove'){
+      if (dialogName === 'dialog-remove') {
         document.querySelector('#removeButton').focus();
-      }else{
+      } else {
         document.querySelector(lastFocusPlace).focus();
       }
       event.stopPropagation();
       event.preventDefault();
     } else if (!event) {
+
       document.getElementById(dialogName).style.display = 'none';
       if (validateFields) {
         document.getElementById(dialogName).dispatchEvent(customEvent);
@@ -350,13 +362,29 @@
       }
       document.getElementById('name').value = '';
       document.getElementById('price').value = '';
-      if(lastFocusPlace){
-        document.getElementById(lastFocusPlace).focus();
+      if (lastFocusPlace && document.querySelector(lastFocusPlace)) {
+        document.querySelector(lastFocusPlace).focus();
+      } else if (dialogName === 'dialog-remove') {
+        document.querySelector('#removeButton').focus();
       }
 
       if (dialogName === 'dialog-submit') {
         onCloseBackToStep1();
       }
+    }
+  }
+
+  function addToast(message) {
+    document.getElementById('toast').classList.add('show');
+    document.getElementById('message-placeholder').innerHTML = message;
+  }
+
+  function hideToast(event) {
+    if (event && (event.keycode === 13 || event.keycode === 32)) {
+      document.getElementById('toast').classList.remove('show');
+    }
+    if (!event) {
+      document.getElementById('toast').classList.remove('show');
     }
   }
 
@@ -368,14 +396,14 @@
     el.style.display = 'flex';
     if (trIndex) {
       setChosenElementByTrIndex(trIndex);
-      lastFocusedElement = '#'+trIndex + ' ' + '#'+buttonName;
+      lastFocusedElement = '#' + trIndex + ' ' + '#' + buttonName;
     }
-    document.getElementById('name').focus();
+    document.getElementById('closeButton-dialog').focus();
     if (dialogName === 'dialog-edit') {
       editElement();
     }
     if (dialogName === 'dialog-remove') {
-      document.getElementById('submit-remove').focus();
+      document.getElementById('closeButton-dialog-remove').focus();
       document.getElementById('chosen_element_data').innerHTML = chosenElem.name + ': ' + chosenElem.price;
     }
     if (dialogName === 'dialog-submit') {
@@ -388,15 +416,16 @@
   function setChosenElementByTrIndex(trIndex) {
     chosenElem.price = document.getElementById(trIndex).childNodes[0].innerHTML;
     chosenElem.name = document.getElementById(trIndex).childNodes[1].innerHTML;
-    chosenElem.id = trIndex.slice(3, 4);
+    chosenElem.id = trIndex.slice(3, trIndex.length);
   }
 
   function removeElement(event) {
-    if (event && (event.keyCode === 13 || event.keyCode === 32)) {
+    if (event && (event.keyCode === 13 || event.keyCode === 32 || event.type === 'click')) {
       items = items.filter(el => el.id !== +chosenElem.id);
       saveItems();
       removeRows();
       createRows();
+      addToast('Removing element successful');
     }
   }
 
@@ -450,7 +479,8 @@
       saveItems();
       removeRows();
       createRows();
-      closeOnEnter('dialog', null,'addButton', false);
+      closeOnEnter('dialog', null, 'addButton', false);
+      addToast('Adding element successful');
     } else {
       validateAddFields(true);
     }
@@ -459,7 +489,7 @@
   function editElement() {
     document.getElementById('price-edit').value = chosenElem.price;
     document.getElementById('name-edit').value = chosenElem.name;
-    document.getElementById('name-edit').focus();
+    document.getElementById('closeButton-dialog-edit').focus();
   }
 
   function setFocusOnFirstElementOnStep() {
@@ -491,6 +521,10 @@
 
   function setCancelOrSubmitEdit(s) {
     cancelOrSubmit = s;
+    if (s === 'submit') {
+      addToast('Editing element successful')
+    }
+
   }
 
 
